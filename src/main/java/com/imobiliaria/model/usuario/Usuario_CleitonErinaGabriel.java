@@ -1,4 +1,70 @@
 package com.imobiliaria.model.usuario;
 
-public class Usuario_CleitonErinaGabriel {
+import java.time.LocalDate;
+
+public abstract class Usuario_CleitonErinaGabriel {
+    protected int codigoUsuario;
+    protected String nome;
+    protected String cpf;
+    protected String rg;
+    protected LocalDate dataNascimento;
+    protected String endereco;
+    protected String cep;
+    protected String telefone;
+    protected String email;
+
+    public Usuario_CleitonErinaGabriel(int codigoUsuario, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+        this.codigoUsuario = codigoUsuario;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.rg = rg;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.cep = cep;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public int getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Codigo de Usuário: " + codigoUsuario + "\nNome: " + nome + "\nCPF: "
+        + cpf + "\nRG: " + rg + "\nData de Nascimento: " + getDataNascimento() + "\nEndereço: "
+        + endereco + "\nCEP: " + cep + "\nTelefone: " + telefone + "\nE-mail: " + email;
+    }
 }
