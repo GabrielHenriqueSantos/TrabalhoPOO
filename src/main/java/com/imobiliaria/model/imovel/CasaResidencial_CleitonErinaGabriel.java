@@ -6,7 +6,7 @@ public class CasaResidencial_CleitonErinaGabriel extends Imovel_CleitonErinaGabr
     public CasaResidencial_CleitonErinaGabriel() {
     }
 
-    public CasaResidencial_CleitonErinaGabriel(int codigoImovel, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheeiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel) {
-        super(codigoImovel, endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheeiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel);
+    public CasaResidencial_CleitonErinaGabriel(int codigoImovel, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, boolean disponivel, Operacao tipoOperacao) {
+        super("CR", endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, disponivel, tipoOperacao);
     }
 }
