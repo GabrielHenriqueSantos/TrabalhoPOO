@@ -1,4 +1,21 @@
 package com.imobiliaria.model.usuario;
 
-public class Cliente_CleitonErinaGabriel {
+import java.time.LocalDate;
+
+public class Cliente_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
+    protected LocalDate dataCadastro;
+
+    public Cliente_CleitonErinaGabriel(int codigoUsuario, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+        super(codigoUsuario, cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
+        this.dataCadastro = dataCadastro;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente: " + super.toString() + "\nData de Cadastro: " + getDataCadastro();
+    }
 }
