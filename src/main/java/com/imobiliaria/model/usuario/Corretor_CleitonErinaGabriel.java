@@ -8,8 +8,8 @@ public class Corretor_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
     protected String pis;
     protected LocalDate dataAdmissao;
 
-    public Corretor_CleitonErinaGabriel(int codigoUsuario, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao) {
-        super(codigoUsuario, cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
+    public Corretor_CleitonErinaGabriel(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao) {
+        super("CR", cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
         this.creci = creci;
         this.salario = salario;
         this.pis = pis;

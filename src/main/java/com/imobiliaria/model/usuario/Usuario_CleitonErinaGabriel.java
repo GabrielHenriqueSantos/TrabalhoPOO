@@ -3,7 +3,8 @@ package com.imobiliaria.model.usuario;
 import java.time.LocalDate;
 
 public abstract class Usuario_CleitonErinaGabriel {
-    protected int codigoUsuario;
+    private static int proxCod = 1;
+    protected String codigoUsuario;
     protected String nome;
     protected String cpf;
     protected String rg;
@@ -13,8 +14,8 @@ public abstract class Usuario_CleitonErinaGabriel {
     protected String telefone;
     protected String email;
 
-    public Usuario_CleitonErinaGabriel(int codigoUsuario, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
-        this.codigoUsuario = codigoUsuario;
+    public Usuario_CleitonErinaGabriel(String cod, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+        this.codigoUsuario = "U"+ (proxCod++) + cod;
         this.cpf = cpf;
         this.nome = nome;
         this.rg = rg;
@@ -25,7 +26,7 @@ public abstract class Usuario_CleitonErinaGabriel {
         this.email = email;
     }
 
-    public int getCodigoUsuario() {
+    public String getCodigoUsuario() {
         return codigoUsuario;
     }
 

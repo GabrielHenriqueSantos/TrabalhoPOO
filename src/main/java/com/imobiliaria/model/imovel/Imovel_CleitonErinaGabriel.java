@@ -23,7 +23,7 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     }
 
     public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, boolean disponivel, Operacao tipoOperacao) {
-        this.codigoImovel = (proxCod++)+cod;
+        this.codigoImovel = proxCod++ + cod;
         this.endereco = endereco;
         this.dataConstrucao = dataConstrucao;
         this.areaTotal = areaTotal;
@@ -56,8 +56,14 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
 
     @Override
     public String toString() {
-        return "Imóvel nº"+codigoImovel+"\nEndereço: "+endereco+"\nData de construção: "+getDataConstrucao_String()+"\nÁrea Total: "
-                +areaTotal+"m^2 Área Construida: "+areaConstruida+"\nQuantidade de Banheiros: "+ qtdBanheiros +"\nQuantidade de Dormitórios: "+qtdDormitórios
-                +"\nVagas na Garagem: "+qtdVagasGaragem+"\nValor IPTU: "+valorIPTU+((tipoOperacao == Operacao.VENDA)?"\nValor Venda: "+valorVenda:"\nValor aluguel base: "+getValorAluguel());
+        return "Imóvel nº"+codigoImovel
+                +"\nEndereço: "+endereco
+                +"\nData de construção: "+getDataConstrucao_String()
+                +"\nÁrea Total: " +areaTotal+"m^2 Área Construida: "+areaConstruida
+                +"\nQuantidade de Banheiros: "+ qtdBanheiros
+                +"\nQuantidade de Dormitórios: "+qtdDormitórios
+                +"\nVagas na Garagem: "+qtdVagasGaragem
+                +"\nValor IPTU: "+valorIPTU
+                +((tipoOperacao == Operacao.VENDA)?"\nValor Venda: "+valorVenda:"\nValor aluguel base: "+getValorAluguel());
     }
 }

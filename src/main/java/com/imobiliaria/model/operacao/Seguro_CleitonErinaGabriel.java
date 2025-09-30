@@ -1,8 +1,8 @@
 package com.imobiliaria.model.operacao;
 
 public class Seguro_CleitonErinaGabriel {
-
-    private int codigoSeguro;
+    private static int proxCod = 1;
+    private String codigoSeguro;
     private String nomeSeguradora;
     private String tipo;
     private String descricao;
@@ -20,8 +20,8 @@ public class Seguro_CleitonErinaGabriel {
     //construtores
 
 
-    public Seguro_CleitonErinaGabriel(int codigoSeguro, String nomeSeguradora, String tipo, String descricao, float valor) {
-        this.codigoSeguro = codigoSeguro;
+    public Seguro_CleitonErinaGabriel(String nomeSeguradora, String tipo, String descricao, float valor) {
+        this.codigoSeguro = (proxCod++) + "SEG";
         this.nomeSeguradora = nomeSeguradora;
         this.tipo = tipo;
         this.descricao = descricao;
@@ -29,12 +29,8 @@ public class Seguro_CleitonErinaGabriel {
     }
 
     //getters e setters
-    public int getCodigoSeguro() {
+    public String getCodigoSeguro() {
         return codigoSeguro;
-    }
-
-    public void setCodigoSeguro(int codigoSeguro) {
-        this.codigoSeguro = codigoSeguro;
     }
 
     public String getNomeSeguradora() {

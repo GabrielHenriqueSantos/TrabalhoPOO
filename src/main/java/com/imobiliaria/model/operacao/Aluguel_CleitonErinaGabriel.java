@@ -9,7 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Aluguel_CleitonErinaGabriel {
-    private int codigoAluguel;
+    private static int proxCod = 1;
+    private String codigoAluguel;
     private Cliente_CleitonErinaGabriel cliente;
     private Corretor_CleitonErinaGabriel corretor;
     private Imovel_CleitonErinaGabriel imovel;
@@ -24,10 +25,10 @@ public class Aluguel_CleitonErinaGabriel {
 
     //funções
 
-    public float calcularValorTotal(float bonificacao, LocalDate dataDeHoje) {
+    public float calcularValorTotal(float bonificacao) {
         float valorTotal = valorTotalAluguel;
 
-        if(!verificarAtraso(dataDeHoje)){ //o cliente ganha um desconto por pagar dentro do prazo
+        if(!verificarAtraso()){ //o cliente ganha um desconto por pagar dentro do prazo
             valorTotal = valorTotal - (valorTotalAluguel * bonificacao);
         }
 
@@ -44,8 +45,8 @@ public class Aluguel_CleitonErinaGabriel {
         return !segurosContratados.isEmpty();
     }
 
-    public boolean verificarAtraso(LocalDate dataDeHoje){
-        return dataDeHoje.isAfter(dataPagamentoMensal);
+    public boolean verificarAtraso(){
+        return LocalDate.now().isAfter(dataPagamentoMensal);
     }
 
     @Override
@@ -67,11 +68,12 @@ public class Aluguel_CleitonErinaGabriel {
     //construtores
 
     public Aluguel_CleitonErinaGabriel() {
+        this.codigoAluguel = (proxCod++) +"AL";
         segurosContratados = new ArrayList();
     }
 
-    public Aluguel_CleitonErinaGabriel(int codigoAluguel, Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataAluguel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, float valorTotalAluguel, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados, boolean finalizado, boolean pago) {
-        this.codigoAluguel = codigoAluguel;
+    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataAluguel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, float valorTotalAluguel, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados, boolean finalizado, boolean pago) {
+        this.codigoAluguel = (proxCod++) +"AL";
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;
@@ -86,12 +88,8 @@ public class Aluguel_CleitonErinaGabriel {
     }
 
     //getters e setters
-    public int getCodigoAluguel() {
+    public String getCodigoAluguel() {
         return codigoAluguel;
-    }
-
-    public void setCodigoAluguel(int codigoAluguel) {
-        this.codigoAluguel = codigoAluguel;
     }
 
     public Cliente_CleitonErinaGabriel getCliente() {

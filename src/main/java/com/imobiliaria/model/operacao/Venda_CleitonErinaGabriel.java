@@ -9,7 +9,8 @@ import java.time.LocalDate;
 
 public class Venda_CleitonErinaGabriel {
 
-    private int codigoVenda;
+    private static int proxCod = 1;
+    private String codigoVenda;
     private Cliente_CleitonErinaGabriel cliente;
     private Corretor_CleitonErinaGabriel corretor;
     private Imovel_CleitonErinaGabriel imovel;
@@ -30,8 +31,8 @@ public class Venda_CleitonErinaGabriel {
                 + finalizada + "\n";
     }
 
-    public Venda_CleitonErinaGabriel(int codigoVenda, Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataVenda, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento, boolean finalizada) {
-        this.codigoVenda = codigoVenda;
+    public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataVenda, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento, boolean finalizada) {
+        this.codigoVenda = (proxCod ++) + "VD";
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;
@@ -41,12 +42,8 @@ public class Venda_CleitonErinaGabriel {
         this.finalizada = finalizada;
     }
 
-    public int getCodigoVenda() {
+    public String getCodigoVenda() {
         return codigoVenda;
-    }
-
-    public void setCodigoVenda(int codigoVenda) {
-        this.codigoVenda = codigoVenda;
     }
 
     public Cliente_CleitonErinaGabriel getCliente() {

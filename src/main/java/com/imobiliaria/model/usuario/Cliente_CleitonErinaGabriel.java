@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Cliente_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
     protected LocalDate dataCadastro;
 
-    public Cliente_CleitonErinaGabriel(int codigoUsuario, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
-        super(codigoUsuario, cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
+    public Cliente_CleitonErinaGabriel(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+        super("CL", cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
         this.dataCadastro = dataCadastro;
     }
 
