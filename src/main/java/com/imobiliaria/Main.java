@@ -4,23 +4,9 @@ package com.imobiliaria;
 import com.imobiliaria.controller.Imobiliaria_CleitonErinaGabriel;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
-    private class GeradorDeCodigo {
-        private static Map<String, Integer> proximo = new HashMap<>();
-
-        public static int gerar(String tipo) {
-            int atual = proximo.getOrDefault(tipo, 0) + 1;
-            proximo.put(tipo, atual);
-            return atual;
-        }
-    }
-
-
     private static Scanner entrada = new Scanner(System.in);
     private static Imobiliaria_CleitonErinaGabriel imobiliaria = new Imobiliaria_CleitonErinaGabriel("Imobiliaria Yeager","Shiganshina, Paradis");
 
@@ -35,7 +21,7 @@ public class Main {
     private static boolean menu(){
         System.out.println("Selecione a opção desejada: \n" +
                             "1: Cadastros\n" +
-                            "2: Venda Aluguel\n" +
+                            "2: Venda/Aluguel\n" +
                             "3: Relatórios\n"+
                             "4: Sair\n" );
         int op = entrada.nextInt();
@@ -45,7 +31,7 @@ public class Main {
                 return true;
             case 2:
                 //operacao();
-                return true;
+                //return true;
             case 3:
                 relatorios();
                 return true;
@@ -128,9 +114,6 @@ public class Main {
         return imobiliaria.novoCorretor(cpf,nome,rg,dataNascimento,endereco,cep,telefone,email,creci,salario,pis,dataAdmissao);
     }
 
-    private static boolean novoImovel(){
-        return false;
-    }
 
     private static boolean relatorios(){
         System.out.println("Selecione a opção desejada: \n" +
