@@ -8,7 +8,7 @@ public class Cliente_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
 
     public Cliente_CleitonErinaGabriel(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
         super("CL", cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
-        this.dataCadastro = dataCadastro;
+        this.dataCadastro = LocalDate.now();
     }
 
     public LocalDate getDataCadastro() {
@@ -17,6 +17,6 @@ public class Cliente_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
 
     @Override
     public String toString() {
-        return "Cliente: " + super.toString() + "\nData de Cadastro: " + getDataCadastro();
+        return "Cliente: " + super.toString() + "\nData de Cadastro: " + getDataCadastro()+"\n";
     }
 }

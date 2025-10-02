@@ -1,6 +1,7 @@
 package com.imobiliaria.controller;
 
 import com.imobiliaria.config.Configuracao_CleitonErinaGabriel;
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.*;
 import com.imobiliaria.model.operacao.Aluguel_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Seguro_CleitonErinaGabriel;
@@ -31,39 +32,56 @@ public class Imobiliaria_CleitonErinaGabriel {
     public Imobiliaria_CleitonErinaGabriel(String nome, String endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        this.alugueis = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoAlugueis);
-        this.vendas = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoVendas);
-        this.imoveis = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoImoveis);
-        this.clientes = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoClientes);
-        this.corretores = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoCorretores);
-        this.seguros = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoSeguros);
+        this.alugueis = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_ALUGUEIS);
+        this.vendas = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_VENDAS);
+        this.imoveis = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_IMOVEIS);
+        this.clientes = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_CLIENTES);
+        this.corretores = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_CORRETORES);
+        this.seguros = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_SEGUROS);
     }
 
     @SuppressWarnings("unchecked")
     public static <T extends Serializable> ArrayList<T> carregarArquivo(String path){
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
+        File arquivo = new File(path);
+        if (!arquivo.exists()) {
+            return new ArrayList<>();
+        }
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))){
             return (ArrayList<T>) ois.readObject();
         }catch (ClassNotFoundException e){
             System.err.println("Classe não encontrada durante desserialização: "+e.getMessage());
-            return null;
         }catch (IOException e){
             return new ArrayList<>();
         }catch (ClassCastException e){
             System.err.println("Erro ao converter objeto para ArrayList: "+e.getMessage());
-            return null;
         }
+        return new ArrayList<>();
     }
 
     public static <T extends Serializable> boolean salvarArquivo(ArrayList<T> arq, String path){
-        try{
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
-            oos.writeObject(arq);
-            return true;
-        } catch (IOException e) {
+        try {
+            File dir = new File(Configuracao_CleitonErinaGabriel.DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+
+            }
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
+                oos.writeObject(arq);
+                return true;
+            }
+        }catch (IOException e) {
             System.err.println("Erro ao Salvar arquivo: "+e.getMessage());
             return false;
         }
+    }
+
+    public void salvarTodosArrayList(){
+        salvarArquivo(alugueis, Configuracao_CleitonErinaGabriel.ARQUIVO_ALUGUEIS);
+        salvarArquivo(vendas, Configuracao_CleitonErinaGabriel.ARQUIVO_VENDAS);
+        salvarArquivo(imoveis, Configuracao_CleitonErinaGabriel.ARQUIVO_IMOVEIS);
+        salvarArquivo(seguros, Configuracao_CleitonErinaGabriel.ARQUIVO_SEGUROS);
+        salvarArquivo(clientes, Configuracao_CleitonErinaGabriel.ARQUIVO_CLIENTES);
+        salvarArquivo(corretores, Configuracao_CleitonErinaGabriel.ARQUIVO_CORRETORES);
     }
 
     public String getEndereco() {
@@ -146,7 +164,6 @@ public class Imobiliaria_CleitonErinaGabriel {
                 segAl.add(seg);
             }
         }
-
         Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel(cliente,corretor,imovel,dataDevolucao,dataPagamentoMensal,formaPagamento,segAl);
         return alugueis.add(aluguel);
     }
@@ -342,9 +359,9 @@ public class Imobiliaria_CleitonErinaGabriel {
 
     public String listarTodosClientes(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Todos os Corretores:\n");
-        for(Usuario_CleitonErinaGabriel corretor:corretores){
-            sb.append(corretor).append("\n");
+        sb.append("Todos os Clientes:\n");
+        for(Usuario_CleitonErinaGabriel cliente:clientes){
+            sb.append(cliente).append("\n");
         }
         return sb.toString();
     }

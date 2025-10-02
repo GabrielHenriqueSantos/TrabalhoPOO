@@ -1,11 +1,12 @@
 package com.imobiliaria.model.usuario;
 
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Usuario_CleitonErinaGabriel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int proxCod = 1;
     protected String codigoUsuario;
     protected String nome;
     protected String cpf;
@@ -17,7 +18,7 @@ public abstract class Usuario_CleitonErinaGabriel implements Serializable {
     protected String email;
 
     public Usuario_CleitonErinaGabriel(String cod, String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
-        this.codigoUsuario = "U"+ (proxCod++) + cod;
+        this.codigoUsuario = GeradorCodigo_CleitonErinaGabriel.gerar(cod);
         this.cpf = cpf;
         this.nome = nome;
         this.rg = rg;
@@ -27,6 +28,7 @@ public abstract class Usuario_CleitonErinaGabriel implements Serializable {
         this.telefone = telefone;
         this.email = email;
     }
+
 
     public String getCodigoUsuario() {
         return codigoUsuario;

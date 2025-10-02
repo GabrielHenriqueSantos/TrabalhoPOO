@@ -1,10 +1,11 @@
 package com.imobiliaria.model.operacao;
 
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
+
 import java.io.Serializable;
 
 public class Seguro_CleitonErinaGabriel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int proxCod = 1;
     private String codigoSeguro;
     private String nomeSeguradora;
     private String tipo;
@@ -24,7 +25,7 @@ public class Seguro_CleitonErinaGabriel implements Serializable {
 
 
     public Seguro_CleitonErinaGabriel(String nomeSeguradora, String tipo, String descricao, float valor) {
-        this.codigoSeguro = (proxCod++) + "SEG";
+        this.codigoSeguro = GeradorCodigo_CleitonErinaGabriel.gerar("SEG");
         this.nomeSeguradora = nomeSeguradora;
         this.tipo = tipo;
         this.descricao = descricao;

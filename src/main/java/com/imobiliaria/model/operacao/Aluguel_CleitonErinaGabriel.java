@@ -1,5 +1,6 @@
 package com.imobiliaria.model.operacao;
 
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 
 public class Aluguel_CleitonErinaGabriel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int proxCod = 1;
     private String codigoAluguel;
     private Cliente_CleitonErinaGabriel cliente;
     private Corretor_CleitonErinaGabriel corretor;
@@ -26,7 +26,6 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
     private boolean pago;
 
     //funções
-
     public float calcularValorTotal(float bonificacao) {
         float valorTotal = valorTotalAluguel;
 
@@ -69,13 +68,8 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
 
     //construtores
 
-    public Aluguel_CleitonErinaGabriel() {
-        this.codigoAluguel = (proxCod++) +"AL";
-        segurosContratados = new ArrayList<>();
-    }
-
     public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
-        this.codigoAluguel = (proxCod++) +"AL";
+        this.codigoAluguel = GeradorCodigo_CleitonErinaGabriel.gerar("AL");
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;

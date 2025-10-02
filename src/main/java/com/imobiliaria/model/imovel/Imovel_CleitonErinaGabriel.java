@@ -1,11 +1,12 @@
 package com.imobiliaria.model.imovel;
 
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int proxCod = 1;
     protected String codigoImovel;
     protected String endereco;
     protected LocalDate dataConstrucao;
@@ -20,11 +21,8 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     protected boolean disponivel;
     protected Operacao tipoOperacao;
 
-    public Imovel_CleitonErinaGabriel() {
-    }
-
     public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao) {
-        this.codigoImovel = proxCod++ + cod;
+        this.codigoImovel = GeradorCodigo_CleitonErinaGabriel.gerar(cod);
         this.endereco = endereco;
         this.dataConstrucao = dataConstrucao;
         this.areaTotal = areaTotal;

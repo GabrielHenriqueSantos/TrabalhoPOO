@@ -1,5 +1,6 @@
 package com.imobiliaria.model.operacao;
 
+import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
@@ -10,7 +11,6 @@ import java.time.LocalDate;
 
 public class Venda_CleitonErinaGabriel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int proxCod = 1;
     private String codigoVenda;
     private Cliente_CleitonErinaGabriel cliente;
     private Corretor_CleitonErinaGabriel corretor;
@@ -33,7 +33,7 @@ public class Venda_CleitonErinaGabriel implements Serializable {
     }
 
     public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
-        this.codigoVenda = (proxCod ++) + "VD";
+        this.codigoVenda = GeradorCodigo_CleitonErinaGabriel.gerar("VD");
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;

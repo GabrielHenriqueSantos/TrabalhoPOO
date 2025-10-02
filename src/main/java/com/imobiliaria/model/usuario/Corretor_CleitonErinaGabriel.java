@@ -36,6 +36,6 @@ public class Corretor_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
     @Override
     public String toString() {
         return "Corretor: " + super.toString() + "\nCRECI: " + creci + "\nSalario: " + salario + "\nPIS: "
-        + pis + "\nData de Admissão: " + getDataAdmissao();
+        + pis + "\nData de Admissão: " + getDataAdmissao()+"\n";
     }
 }
