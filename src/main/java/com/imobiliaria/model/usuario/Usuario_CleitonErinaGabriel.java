@@ -1,8 +1,10 @@
 package com.imobiliaria.model.usuario;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Usuario_CleitonErinaGabriel {
+public abstract class Usuario_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proxCod = 1;
     protected String codigoUsuario;
     protected String nome;

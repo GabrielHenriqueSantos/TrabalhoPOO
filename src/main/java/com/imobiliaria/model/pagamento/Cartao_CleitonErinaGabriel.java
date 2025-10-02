@@ -1,6 +1,7 @@
 package com.imobiliaria.model.pagamento;
 
 public class Cartao_CleitonErinaGabriel extends Pagamento_CleitonErinaGabriel{
+    private static final long serialVersionUID = 1L;
     private String nome;
     private String bandeira;
     private String numero;
@@ -26,7 +27,7 @@ public class Cartao_CleitonErinaGabriel extends Pagamento_CleitonErinaGabriel{
 
     @Override
     public String toString() {
-        return "Pagamento em Cartão: " + toString() + "\nNome: " + nome
+        return "Pagamento em Cartão:\nNome: " + nome
         + "\nBandeira: " + bandeira + "\nNúmero: " + numero;
     }
 }

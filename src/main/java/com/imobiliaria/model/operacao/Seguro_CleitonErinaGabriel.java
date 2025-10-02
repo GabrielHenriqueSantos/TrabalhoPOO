@@ -1,6 +1,9 @@
 package com.imobiliaria.model.operacao;
 
-public class Seguro_CleitonErinaGabriel {
+import java.io.Serializable;
+
+public class Seguro_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proxCod = 1;
     private String codigoSeguro;
     private String nomeSeguradora;

@@ -5,13 +5,17 @@ import com.imobiliaria.model.imovel.*;
 import com.imobiliaria.model.operacao.Aluguel_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Seguro_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Venda_CleitonErinaGabriel;
+import com.imobiliaria.model.pagamento.Cartao_CleitonErinaGabriel;
+import com.imobiliaria.model.pagamento.Dinheiro_CleitonErinaGabriel;
+import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Usuario_CleitonErinaGabriel;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.concurrent.TransferQueue;
+import java.util.List;
 
 public class Imobiliaria_CleitonErinaGabriel {
     private String nome;
@@ -19,30 +23,186 @@ public class Imobiliaria_CleitonErinaGabriel {
     private ArrayList<Aluguel_CleitonErinaGabriel> alugueis;
     private ArrayList<Venda_CleitonErinaGabriel> vendas;
     private ArrayList<Imovel_CleitonErinaGabriel> imoveis;
-    //Revisar
     private ArrayList<Usuario_CleitonErinaGabriel> clientes;
     private ArrayList<Usuario_CleitonErinaGabriel> corretores;
 
     private ArrayList<Seguro_CleitonErinaGabriel> seguros;
 
-
-
     public Imobiliaria_CleitonErinaGabriel(String nome, String endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        this.alugueis = new ArrayList<>();
-        this.vendas = new ArrayList<>();
-        this.imoveis = new ArrayList<>();
-        this.clientes = new ArrayList<>();
-        this.corretores = new ArrayList<>();
-        this.seguros = new ArrayList<>();
+        this.alugueis = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoAlugueis);
+        this.vendas = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoVendas);
+        this.imoveis = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoImoveis);
+        this.clientes = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoClientes);
+        this.corretores = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoCorretores);
+        this.seguros = carregarArquivo(Configuracao_CleitonErinaGabriel.arquivoSeguros);
     }
 
-    public boolean novoCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email){
-        Cliente_CleitonErinaGabriel novoCliente = new Cliente_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
-        clientes.add(novoCliente);
-        return true;
+    @SuppressWarnings("unchecked")
+    public static <T extends Serializable> ArrayList<T> carregarArquivo(String path){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
+            return (ArrayList<T>) ois.readObject();
+        }catch (ClassNotFoundException e){
+            System.err.println("Classe não encontrada durante desserialização: "+e.getMessage());
+            return null;
+        }catch (IOException e){
+            return new ArrayList<>();
+        }catch (ClassCastException e){
+            System.err.println("Erro ao converter objeto para ArrayList: "+e.getMessage());
+            return null;
+        }
     }
+
+    public static <T extends Serializable> boolean salvarArquivo(ArrayList<T> arq, String path){
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+            oos.writeObject(arq);
+            return true;
+        } catch (IOException e) {
+            System.err.println("Erro ao Salvar arquivo: "+e.getMessage());
+            return false;
+        }
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    /*******************************************************************************************************************
+     * Cadastros
+     *******************************************************************************************************************/
+    //FIXME:
+    //      Code smell
+    public boolean novoCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,String telefone, String email){
+        Usuario_CleitonErinaGabriel novoCliente = new Cliente_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
+        return clientes.add(novoCliente);
+    }
+
+    //FIXME:
+    //      Code smell
+    public boolean novoCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
+                                String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao){
+        Usuario_CleitonErinaGabriel novoCorretor = new Corretor_CleitonErinaGabriel( cpf, nome, rg, dataNascimento, endereco, cep, telefone, email, creci, salario, pis, dataAdmissao);
+        return corretores.add(novoCorretor);
+    }
+
+    //FIXME:
+    //      Code smell
+    //Novo Prédio residencial
+    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
+                              int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
+                              float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio){
+        PredioResidencial_CleitonErinaGabriel novoAp = new PredioResidencial_CleitonErinaGabriel(endereco,dataConstrucao,areaTotal,areaConstruida,qtdDormitórios,qtdBanheiros,qtdVagasGaragem,valorIPTU,valorVenda,valorAluguel,tipoOperacao,andar,numApto,valorCondominio);
+        return imoveis.add(novoAp);
+    }
+
+    //FIXME:
+    //      Code smell
+    //Nova Casa
+    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
+                              int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
+                              float valorAluguel, Operacao tipoOperacao){
+        CasaResidencial_CleitonErinaGabriel novaCasa = new CasaResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
+        return imoveis.add(novaCasa);
+    }
+
+    //FIXME:
+    //      Code smell
+    //Novo Predio Comeercial
+    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao, float taxaImpostoFederal){
+        Comercial_CleitonErinaGabriel novoComercio = new Comercial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, taxaImpostoFederal);
+        return imoveis.add(novoComercio);
+    }
+
+    //FIXME:
+    //      Melhorar pagamento
+    public boolean novaVenda(String codCliente, String codCorretor, String codImovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento){
+        Cliente_CleitonErinaGabriel cliente = buscaCliente(codCliente);
+        Corretor_CleitonErinaGabriel corretor = buscaCorretor(codCorretor);
+        Imovel_CleitonErinaGabriel imovel = buscaImovel(codImovel);
+        if(cliente == null || corretor ==null || imovel == null)
+            return false;
+        Venda_CleitonErinaGabriel venda = new Venda_CleitonErinaGabriel(cliente, corretor, imovel, valorTotalVenda, formaPagamento);
+        return vendas.add(venda);
+    }
+    //FIXME
+    public boolean novoAluguel(String  codCliente, String  codCorretor,  String codImovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, List<String> segurosContratados) {
+        Cliente_CleitonErinaGabriel cliente = buscaCliente(codCliente);
+        Corretor_CleitonErinaGabriel corretor = buscaCorretor(codCorretor);
+        Imovel_CleitonErinaGabriel imovel = buscaImovel(codImovel);
+        if(cliente == null || corretor ==null || imovel == null)
+            return false;
+        ArrayList<Seguro_CleitonErinaGabriel> segAl = new ArrayList<>();
+        Seguro_CleitonErinaGabriel seg;
+        for(String codSeg:segurosContratados){
+            seg = buscaSeguro(codSeg);
+            if(seg != null){
+                segAl.add(seg);
+            }
+        }
+
+        Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel(cliente,corretor,imovel,dataDevolucao,dataPagamentoMensal,formaPagamento,segAl);
+        return alugueis.add(aluguel);
+    }
+
+    public boolean novoSeguro(String nomeSeguradora, String tipo, String descricao, float valor){
+        return seguros.add(new Seguro_CleitonErinaGabriel(nomeSeguradora, tipo, descricao,valor));
+    }
+
+    public Pagamento_CleitonErinaGabriel novoPagamento(String tipoPagamento, String nome, String bandeira, String numero){
+        return new Cartao_CleitonErinaGabriel(tipoPagamento,nome,bandeira,numero);
+    }
+
+    public Pagamento_CleitonErinaGabriel novoPagamento(String tipoPagamento){
+        return new Dinheiro_CleitonErinaGabriel(tipoPagamento);
+    }
+
+
+
+    /*******************************************************************************************************************
+     * Métodos de busca
+     *******************************************************************************************************************/
+    public Cliente_CleitonErinaGabriel buscaCliente(String codCliente){
+        for(Usuario_CleitonErinaGabriel c:clientes){
+            if(c.getCodigoUsuario().equals(codCliente))
+                return (Cliente_CleitonErinaGabriel) c;
+        }
+        return null;
+    }
+
+    public Corretor_CleitonErinaGabriel buscaCorretor(String codCorretor){
+        for(Usuario_CleitonErinaGabriel c:corretores){
+            if(c.getCodigoUsuario().equals(codCorretor))
+                return (Corretor_CleitonErinaGabriel) c;
+        }
+        return null;
+    }
+
+    public Imovel_CleitonErinaGabriel buscaImovel(String codImovel){
+        for(Imovel_CleitonErinaGabriel i:imoveis){
+            if(i.getCodigoImovel().equals(codImovel)){
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public Seguro_CleitonErinaGabriel buscaSeguro(String codSeguro){
+        for(Seguro_CleitonErinaGabriel s:seguros){
+            if(s.getCodigoSeguro().equals(codSeguro)){
+                return s;
+            }
+        }
+        return null;
+    }
+
+    /*******************************************************************************************************************/
 
     public String listarImoveis(){
         StringBuilder sb = new StringBuilder();

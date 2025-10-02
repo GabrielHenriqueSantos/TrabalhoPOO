@@ -5,10 +5,12 @@ import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Aluguel_CleitonErinaGabriel {
+public class Aluguel_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proxCod = 1;
     private String codigoAluguel;
     private Cliente_CleitonErinaGabriel cliente;
@@ -69,22 +71,30 @@ public class Aluguel_CleitonErinaGabriel {
 
     public Aluguel_CleitonErinaGabriel() {
         this.codigoAluguel = (proxCod++) +"AL";
-        segurosContratados = new ArrayList();
+        segurosContratados = new ArrayList<>();
     }
 
-    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataAluguel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, float valorTotalAluguel, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados, boolean finalizado, boolean pago) {
+    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
         this.codigoAluguel = (proxCod++) +"AL";
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;
-        this.dataAluguel = dataAluguel;
+        this.dataAluguel = LocalDate.now();
         this.dataDevolucao = dataDevolucao;
         this.dataPagamentoMensal = dataPagamentoMensal;
-        this.valorTotalAluguel = valorTotalAluguel;
+        this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
         this.formaPagamento = formaPagamento;
         this.segurosContratados = segurosContratados;
-        this.finalizado = finalizado;
-        this.pago = pago;
+        this.finalizado = false;
+        this.pago = false;
+    }
+
+    public float valorTotalSeguro(){
+        float valor = 0f;
+        for(Seguro_CleitonErinaGabriel s:segurosContratados){
+            valor+=s.getValor();
+        }
+        return valor;
     }
 
     //getters e setters

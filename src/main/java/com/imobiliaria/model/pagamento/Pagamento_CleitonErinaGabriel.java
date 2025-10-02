@@ -1,6 +1,9 @@
 package com.imobiliaria.model.pagamento;
 
-public abstract class Pagamento_CleitonErinaGabriel {
+import java.io.Serializable;
+
+public abstract class Pagamento_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String tipoPagamento;
 
     public Pagamento_CleitonErinaGabriel(String tipoPagamento) {

@@ -3,6 +3,7 @@ package com.imobiliaria.model.usuario;
 import java.time.LocalDate;
 
 public class Corretor_CleitonErinaGabriel extends Usuario_CleitonErinaGabriel{
+    private static final long serialVersionUID = 1L;
     protected String creci;
     protected float salario;
     protected String pis;

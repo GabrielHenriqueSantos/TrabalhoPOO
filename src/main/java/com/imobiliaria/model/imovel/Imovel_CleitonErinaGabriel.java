@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Imovel_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proxCod = 1;
     protected String codigoImovel;
     protected String endereco;
@@ -22,7 +23,7 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     public Imovel_CleitonErinaGabriel() {
     }
 
-    public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, boolean disponivel, Operacao tipoOperacao) {
+    public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao) {
         this.codigoImovel = proxCod++ + cod;
         this.endereco = endereco;
         this.dataConstrucao = dataConstrucao;
@@ -34,8 +35,12 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
         this.valorIPTU = valorIPTU;
         this.valorVenda = valorVenda;
         this.valorAluguel = valorAluguel;
-        this.disponivel = disponivel;
+        this.disponivel = true;
         this.tipoOperacao = tipoOperacao;
+    }
+
+    public String getCodigoImovel(){
+        return codigoImovel;
     }
 
     public String getDataConstrucao_String() {
@@ -52,6 +57,10 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
 
     public boolean isDisponivel() {
         return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel){
+        this.disponivel = disponivel;
     }
 
     @Override

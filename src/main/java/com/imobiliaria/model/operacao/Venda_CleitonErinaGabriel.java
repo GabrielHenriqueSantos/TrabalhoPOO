@@ -5,10 +5,11 @@ import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Venda_CleitonErinaGabriel {
-
+public class Venda_CleitonErinaGabriel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proxCod = 1;
     private String codigoVenda;
     private Cliente_CleitonErinaGabriel cliente;
@@ -31,15 +32,15 @@ public class Venda_CleitonErinaGabriel {
                 + finalizada + "\n";
     }
 
-    public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataVenda, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento, boolean finalizada) {
+    public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
         this.codigoVenda = (proxCod ++) + "VD";
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;
-        this.dataVenda = dataVenda;
+        this.dataVenda = LocalDate.now();
         this.valorTotalVenda = valorTotalVenda;
         this.formaPagamento = formaPagamento;
-        this.finalizada = finalizada;
+        this.finalizada = false;
     }
 
     public String getCodigoVenda() {
