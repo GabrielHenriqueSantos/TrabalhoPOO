@@ -1,8 +1,11 @@
 package com.imobiliaria.controller;
 
 import com.imobiliaria.config.Configuracao_CleitonErinaGabriel;
-import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
-import com.imobiliaria.model.imovel.*;
+import com.imobiliaria.model.imovel.CasaResidencial_CleitonErinaGabriel;
+import com.imobiliaria.model.imovel.Comercial_CleitonErinaGabriel;
+import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
+import com.imobiliaria.model.imovel.Operacao;
+import com.imobiliaria.model.imovel.PredioResidencial_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Aluguel_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Seguro_CleitonErinaGabriel;
 import com.imobiliaria.model.operacao.Venda_CleitonErinaGabriel;

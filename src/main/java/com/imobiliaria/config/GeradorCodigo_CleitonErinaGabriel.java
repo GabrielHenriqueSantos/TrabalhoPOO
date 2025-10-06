@@ -23,7 +23,7 @@ public class GeradorCodigo_CleitonErinaGabriel implements Serializable {
         try {
             File dir = new File(Configuracao_CleitonErinaGabriel.DIR);
             if (!dir.exists()) {
-                dir.mkdirs(); // cria o diretório "data" se não existir
+                dir.mkdirs();
             }
 
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Configuracao_CleitonErinaGabriel.ARQUIVO_GERADOR))) {
@@ -38,7 +38,7 @@ public class GeradorCodigo_CleitonErinaGabriel implements Serializable {
     private static void carregar() {
         File arquivo = new File(Configuracao_CleitonErinaGabriel.ARQUIVO_GERADOR);
         if (!arquivo.exists()) {
-            proximo = new HashMap<>(); // primeira execução, inicia vazio
+            proximo = new HashMap<>();
             return;
         }
 
