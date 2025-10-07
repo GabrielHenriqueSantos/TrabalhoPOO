@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17f4de53-b81c-4432-8168-686a0ce0c3a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/imobiliaria/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/config/GeradorCodigo_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/config/GeradorCodigo_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/Imobiliaria_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/Imobiliaria_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/Imobiliaria_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,6 +35,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="33eqYEZ8ztS5CNxbhKn2PjIFSXV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,12 +50,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/gui"
+    "git-widget-placeholder": "feature/gui",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.imobiliaria.imobiliaria" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imobiliaria.view.cadastro" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">

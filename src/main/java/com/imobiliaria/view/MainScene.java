@@ -1,5 +1,8 @@
 package com.imobiliaria.view;
 
+import com.imobiliaria.controller.MainController;
+import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
+import com.imobiliaria.view.cadastro.FormCliente;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Menu;
@@ -9,8 +12,10 @@ import javafx.scene.layout.BorderPane;
 
 
 public class MainScene extends Scene {
-    private static final double MIN_WIDTH = 640.0;
-    private static final double MIN_HEIGHT = 480.0;
+    private static final double MIN_WIDTH = 1280.0;
+    private static final double MIN_HEIGHT = 720.0;
+
+    private final MainController controller;
 
     private final BorderPane layout;
     private final MenuBar menubar;
@@ -20,9 +25,11 @@ public class MainScene extends Scene {
     public MainScene(){
         super(new BorderPane(), MIN_WIDTH, MIN_HEIGHT, true, SceneAntialiasing.BALANCED);
         layout = (BorderPane) this.getRoot();
-        menubar = initMenuBar();
+        controller = new MainController(new Imobiliaria_CleitonErinaGabriel("Imobiliaria Yeager","Shiganshina"), layout);
 
+        menubar = initMenuBar();
         layout.setTop(menubar);
+
     }
 
     private MenuBar initMenuBar(){
@@ -40,6 +47,12 @@ public class MainScene extends Scene {
         MenuItem miSeguro = new MenuItem("Seguro");
         cadastro.getItems().addAll(miImovel,usuario,miSeguro);
 
+        miCliente.setOnAction(e->{
+            controller.abrirCadastroCliente();
+        });
+        miCorretor.setOnAction(e->{
+            controller.abrirCadastroCorretor();
+        });
         return cadastro;
     }
 
