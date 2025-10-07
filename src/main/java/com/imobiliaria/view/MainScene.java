@@ -18,18 +18,12 @@ public class MainScene extends Scene {
     private final MainController controller;
 
     private final BorderPane layout;
-    private final MenuBar menubar;
-
-
 
     public MainScene(){
         super(new BorderPane(), MIN_WIDTH, MIN_HEIGHT, true, SceneAntialiasing.BALANCED);
         layout = (BorderPane) this.getRoot();
         controller = new MainController(new Imobiliaria_CleitonErinaGabriel("Imobiliaria Yeager","Shiganshina"), layout);
-
-        menubar = initMenuBar();
-        layout.setTop(menubar);
-
+        layout.setTop(initMenuBar());
     }
 
     private MenuBar initMenuBar(){
@@ -52,6 +46,12 @@ public class MainScene extends Scene {
         });
         miCorretor.setOnAction(e->{
             controller.abrirCadastroCorretor();
+        });
+        miImovel.setOnAction(e->{
+            controller.abrirCadastroImovel();
+        });
+        miSeguro.setOnAction(e->{
+            controller.abrirCadastroSeguro();
         });
         return cadastro;
     }

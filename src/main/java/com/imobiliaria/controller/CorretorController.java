@@ -16,16 +16,17 @@ public class CorretorController {
         this.onFecharForm = r;
     }
 
-    public boolean cadastrarCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
+    public String cadastrarCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
                                      String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao){
-        boolean sucesso = imobiliaria.novoCorretor(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email, creci, salario, pis, dataAdmissao);
-        if(sucesso && onFecharForm != null){
+        String cod = imobiliaria.novoCorretor(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email, creci, salario, pis, dataAdmissao);
+        if(!cod.isBlank() && onFecharForm != null){
             onFecharForm.run();
         }
-        return sucesso;
+        return cod;
     }
 
     public void cancelarCadastro(){
-        onFecharForm.run();
+        if (onFecharForm != null)
+            onFecharForm.run();
     }
 }

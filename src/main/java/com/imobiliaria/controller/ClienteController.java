@@ -15,15 +15,16 @@ public class ClienteController {
         this.onFecharForm = r;
     }
 
-    public boolean cadastrarCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
-        boolean sucesso = imobiliaria.novoCliente(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
-        if(sucesso && onFecharForm != null){
+    public String cadastrarCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+        String cod = imobiliaria.novoCliente(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
+        if(!cod.isBlank() && onFecharForm != null){
             onFecharForm.run();
         }
-        return sucesso;
+        return cod;
     }
 
     public void cancelarCadastro(){
-        onFecharForm.run();
+        if(onFecharForm != null)
+            onFecharForm.run();
     }
 }

@@ -100,45 +100,52 @@ public class Imobiliaria_CleitonErinaGabriel {
      *******************************************************************************************************************/
     //FIXME:
     //      Code smell
-    public boolean novoCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
+    public String novoCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
         Usuario_CleitonErinaGabriel novoCliente = new Cliente_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
-        return clientes.add(novoCliente);
+        clientes.add(novoCliente);
+        return novoCliente.getCodigoUsuario();
     }
 
     //FIXME:
     //      Code smell
-    public boolean novoCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
+    public String novoCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
                                 String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao) {
         Usuario_CleitonErinaGabriel novoCorretor = new Corretor_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email, creci, salario, pis, dataAdmissao);
-        return corretores.add(novoCorretor);
+        corretores.add(novoCorretor);
+        return novoCorretor.getCodigoUsuario();
     }
 
     //FIXME:
     //      Code smell
     //Novo Prédio residencial
-    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                              int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
+    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
+                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
                               float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio) {
-        PredioResidencial_CleitonErinaGabriel novoAp = new PredioResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, andar, numApto, valorCondominio);
-        return imoveis.add(novoAp);
+        PredioResidencial_CleitonErinaGabriel novoAp = new PredioResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, andar, numApto, valorCondominio);
+        imoveis.add(novoAp);
+        return novoAp.getCodigoImovel();
     }
 
     //FIXME:
     //      Code smell
     //Nova Casa
-    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                              int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
+    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
+                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
                               float valorAluguel, Operacao tipoOperacao) {
-        CasaResidencial_CleitonErinaGabriel novaCasa = new CasaResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
-        return imoveis.add(novaCasa);
+        CasaResidencial_CleitonErinaGabriel novaCasa = new CasaResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
+        imoveis.add(novaCasa);
+        return novaCasa.getCodigoImovel();
     }
 
     //FIXME:
     //      Code smell
     //Novo Predio Comeercial
-    public boolean novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao, float taxaImpostoFederal) {
-        Comercial_CleitonErinaGabriel novoComercio = new Comercial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, taxaImpostoFederal);
-        return imoveis.add(novoComercio);
+    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
+                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
+                              float valorAluguel, Operacao tipoOperacao, float taxaImpostoFederal) {
+        Comercial_CleitonErinaGabriel novoComercio = new Comercial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, taxaImpostoFederal);
+        imoveis.add(novoComercio);
+        return novoComercio.getCodigoImovel();
     }
 
     //FIXME:
@@ -172,8 +179,10 @@ public class Imobiliaria_CleitonErinaGabriel {
         return alugueis.add(aluguel);
     }
 
-    public boolean novoSeguro(String nomeSeguradora, String tipo, String descricao, float valor) {
-        return seguros.add(new Seguro_CleitonErinaGabriel(nomeSeguradora, tipo, descricao, valor));
+    public String novoSeguro(String nomeSeguradora, String tipo, String descricao, float valor) {
+        Seguro_CleitonErinaGabriel novoSeguro = new Seguro_CleitonErinaGabriel(nomeSeguradora, tipo, descricao, valor);
+        seguros.add(novoSeguro);
+        return novoSeguro.getCodigoSeguro();
     }
 
     public Pagamento_CleitonErinaGabriel novoPagamento(String tipoPagamento, String nome, String bandeira, String numero) {
