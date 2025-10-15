@@ -95,19 +95,42 @@ public class Imobiliaria_CleitonErinaGabriel {
         return nome;
     }
 
+    public List<String> getCodigosImoveisDisp(Operacao op){
+        List<String> codigos = new ArrayList<>();
+        for(Imovel_CleitonErinaGabriel i:imoveis){
+            if(i.isDisponivel() && i.getTipoOperacao() == op){
+                codigos.add(i.getCodigoImovel());
+            }
+        }
+        return codigos;
+    }
+
+    public List<String> getCodigosCorretores(){
+        List<String> codigos = new ArrayList<>();
+        for(Usuario_CleitonErinaGabriel c:corretores){
+            codigos.add(c.getCodigoUsuario());
+        }
+        return codigos;
+    }
+
+    public List<String> getCodigosClientes(){
+        List<String> codigos = new ArrayList<>();
+        for(Usuario_CleitonErinaGabriel c:clientes){
+            codigos.add(c.getCodigoUsuario());
+        }
+        return codigos;
+    }
+
     /*******************************************************************************************************************
      * Cadastros
      *******************************************************************************************************************/
-    //FIXME:
-    //      Code smell
+
     public String novoCliente(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep, String telefone, String email) {
         Usuario_CleitonErinaGabriel novoCliente = new Cliente_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email);
         clientes.add(novoCliente);
         return novoCliente.getCodigoUsuario();
     }
 
-    //FIXME:
-    //      Code smell
     public String novoCorretor(String cpf, String nome, String rg, LocalDate dataNascimento, String endereco, String cep,
                                 String telefone, String email, String creci, float salario, String pis, LocalDate dataAdmissao) {
         Usuario_CleitonErinaGabriel novoCorretor = new Corretor_CleitonErinaGabriel(cpf, nome, rg, dataNascimento, endereco, cep, telefone, email, creci, salario, pis, dataAdmissao);
@@ -115,8 +138,6 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novoCorretor.getCodigoUsuario();
     }
 
-    //FIXME:
-    //      Code smell
     //Novo Prédio residencial
     public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
                               int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
@@ -126,8 +147,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novoAp.getCodigoImovel();
     }
 
-    //FIXME:
-    //      Code smell
+
     //Nova Casa
     public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
                               int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
@@ -137,8 +157,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novaCasa.getCodigoImovel();
     }
 
-    //FIXME:
-    //      Code smell
+
     //Novo Predio Comeercial
     public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
                               int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
@@ -148,25 +167,19 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novoComercio.getCodigoImovel();
     }
 
-    //FIXME:
-    //      Melhorar pagamento
-    public boolean novaVenda(String codCliente, String codCorretor, String codImovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
-        Cliente_CleitonErinaGabriel cliente = buscaCliente(codCliente);
-        Corretor_CleitonErinaGabriel corretor = buscaCorretor(codCorretor);
-        Imovel_CleitonErinaGabriel imovel = buscaImovel(codImovel);
+    public Venda_CleitonErinaGabriel novaVenda(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
         if (cliente == null || corretor == null || imovel == null)
-            return false;
+            return null;
+        imovel.setDisponivel(false);
         Venda_CleitonErinaGabriel venda = new Venda_CleitonErinaGabriel(cliente, corretor, imovel, valorTotalVenda, formaPagamento);
-        return vendas.add(venda);
+        vendas.add(venda);
+        return venda;
     }
 
-    //FIXME
-    public boolean novoAluguel(String codCliente, String codCorretor, String codImovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, List<String> segurosContratados) {
-        Cliente_CleitonErinaGabriel cliente = buscaCliente(codCliente);
-        Corretor_CleitonErinaGabriel corretor = buscaCorretor(codCorretor);
-        Imovel_CleitonErinaGabriel imovel = buscaImovel(codImovel);
+    public Aluguel_CleitonErinaGabriel novoAluguel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, List<String> segurosContratados) {
         if (cliente == null || corretor == null || imovel == null)
-            return false;
+            return null;
+        imovel.setDisponivel(false);
         ArrayList<Seguro_CleitonErinaGabriel> segAl = new ArrayList<>();
         Seguro_CleitonErinaGabriel seg;
         for (String codSeg : segurosContratados) {
@@ -175,8 +188,9 @@ public class Imobiliaria_CleitonErinaGabriel {
                 segAl.add(seg);
             }
         }
-        Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel(cliente, corretor, imovel, dataDevolucao, dataPagamentoMensal, formaPagamento, segAl);
-        return alugueis.add(aluguel);
+        Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel(cliente, corretor, imovel, dataDevolucao, dataPagamentoMensal, segAl);
+        alugueis.add(aluguel);
+        return aluguel;
     }
 
     public String novoSeguro(String nomeSeguradora, String tipo, String descricao, float valor) {
@@ -391,7 +405,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return sb.toString();
     }
 
-    public String listaAlugueisFinalizados() {
+    public String listarAlugueisFinalizados() {
         StringBuilder sb = new StringBuilder();
         sb.append("Todos Alugueis Finalizados\n");
         for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
@@ -402,7 +416,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return sb.toString();
     }
 
-    public String listaAlugueisAtivos() {
+    public String listarAlugueisAtivos() {
         StringBuilder sb = new StringBuilder();
         sb.append("Todos Alugueis ativos\n");
         for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
@@ -413,7 +427,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return sb.toString();
     }
 
-    public String listaVendas() {
+    public String listarTodasVendas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Todas as Vendas:\n");
         for (Venda_CleitonErinaGabriel venda : vendas) {

@@ -5,8 +5,10 @@ import com.imobiliaria.controller.CorretorController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 import java.time.LocalDate;
 
@@ -22,6 +24,10 @@ public class FormCorretor extends GridPane {
         this.setHgap(10);
         this.setVgap(10);
         this.setAlignment(Pos.TOP_CENTER);
+        ColumnConstraints col1 = new ColumnConstraints(160);
+        ColumnConstraints col2 = new ColumnConstraints(250, 400, Double.MAX_VALUE);
+        col2.setHgrow(Priority.ALWAYS);
+        this.getColumnConstraints().addAll(col1, col2);
 
 
         TextField txtCpf = new TextField();

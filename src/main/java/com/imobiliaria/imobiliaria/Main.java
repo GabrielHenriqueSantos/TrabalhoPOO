@@ -12,8 +12,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage){
-        stage.setScene(new MainScene());
-        stage.setMaximized(true);
+        MainScene mainscene = new MainScene();
+        stage.setScene(mainscene);
+        stage.setMaximized(false);
         stage.show();
+        stage.setOnCloseRequest(e->{
+            mainscene.salvarESair();
+        });
     }
 }

@@ -51,24 +51,28 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
     }
 
     @Override
-    public String toString(){
-        return codigoAluguel + "\n"
-                + cliente.toString() + "\n"
-                + corretor.toString() + "\n"
-                + imovel.toString() + "\n"
-                + dataAluguel.toString() + "\n"
-                + dataDevolucao.toString() + "\n"
-                + dataPagamentoMensal.toString() + "\n"
-                + valorTotalAluguel + "\n"
-                + formaPagamento.toString() + "\n"
-                + segurosContratados.toString() + "\n"
-                + finalizado + "\n"
-                + pago + "\n";
+    public String toString() {
+        return "Código: " + codigoAluguel + "\n"
+                + "Cliente:\n\tCódigo: " + cliente.getCodigoUsuario() + "\n"
+                + "\tNome: " + cliente.getNome() + "\n"
+                + "Corretor:\n\tCódigo: " + corretor.getCodigoUsuario() + "\n"
+                + "\tNome: " + corretor.getNome() + "\n"
+                + "Imóvel:\n\tCódigo: " + imovel.getCodigoImovel() + "\n"
+                + "\tEndereço: " + imovel.getEndereco() + "\n"
+                + "Data do Aluguel: " + dataAluguel + "\n"
+                + "Data de Devolução: " + dataDevolucao + "\n"
+                + "Data Pagamento Mensal: " + dataPagamentoMensal + "\n"
+                + "Valor Total: " + valorTotalAluguel + "\n"
+                + "Forma de Pagamento:\n\t" + formaPagamento.toString() + "\n"
+                + "Seguros Contratados: " + segurosContratados.toString() + "\n"
+                + (finalizado ? "Finalizado" : "Em andamento") + "\n"
+                + (pago ? "Pago" : "Pendente") + "\n";
     }
+
 
     //construtores
 
-    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
+    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
         this.codigoAluguel = GeradorCodigo_CleitonErinaGabriel.gerar("AL");
         this.cliente = cliente;
         this.corretor = corretor;
@@ -77,7 +81,6 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
         this.dataDevolucao = dataDevolucao;
         this.dataPagamentoMensal = dataPagamentoMensal;
         this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
-        this.formaPagamento = formaPagamento;
         this.segurosContratados = segurosContratados;
         this.finalizado = false;
         this.pago = false;

@@ -4,8 +4,10 @@ import com.imobiliaria.controller.SeguroController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 public class FormSeguro extends GridPane {
 
@@ -19,6 +21,10 @@ public class FormSeguro extends GridPane {
         this.setHgap(10);
         this.setAlignment(Pos.TOP_CENTER);
         this.setPrefWidth(480);
+        ColumnConstraints col1 = new ColumnConstraints(160);
+        ColumnConstraints col2 = new ColumnConstraints(250, 400, Double.MAX_VALUE);
+        col2.setHgrow(Priority.ALWAYS);
+        this.getColumnConstraints().addAll(col1, col2);
 
         TextField txtNomeSeguradora = new TextField();
         TextField txtTipo = new TextField();

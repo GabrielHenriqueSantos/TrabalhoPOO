@@ -49,12 +49,20 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
         return valorAluguel;
     }
 
+    public float getValorVenda() {
+        return valorVenda;
+    }
+
     public Operacao getTipoOperacao() {
         return tipoOperacao;
     }
 
     public boolean isDisponivel() {
         return disponivel;
+    }
+
+    public String getEndereco() {
+        return endereco;
     }
 
     public void setDisponivel(boolean disponivel){
