@@ -14,6 +14,7 @@ public class Main extends Application {
     public void start(Stage stage){
         MainScene mainscene = new MainScene();
         stage.setScene(mainscene);
+        stage.setTitle("Imobiliaria");
         stage.setMaximized(false);
         stage.show();
         stage.setOnCloseRequest(e->{

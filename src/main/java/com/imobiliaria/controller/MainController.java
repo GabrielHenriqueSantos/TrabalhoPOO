@@ -151,4 +151,7 @@ public class MainController {
             mostrarRelatorio(imobiliaria.vendaPorMes(fimMes));
         }
     }
+
+    public void listarTodosSeguros() {
+        mostrarRelatorio(imobiliaria.listaTodosSeguros());}
 }

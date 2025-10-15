@@ -452,7 +452,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         return sb.toString();
     }
 
-    public String todosSeguros() {
+    public String listaTodosSeguros() {
         StringBuilder sb = new StringBuilder();
         sb.append("Todos seguros cadastrados: \n");
         for (Seguro_CleitonErinaGabriel seguro : seguros) {

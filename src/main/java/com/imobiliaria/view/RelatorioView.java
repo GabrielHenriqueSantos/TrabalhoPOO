@@ -15,8 +15,8 @@ public class RelatorioView extends VBox {
         setPadding(new Insets(50));
         setSpacing(10);
 
-        Label lblTitulo = new Label("Imóveis Cadastrados:");
-        lblTitulo.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        Label lblTitulo = new Label("Relatório");
+        lblTitulo.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
         txtLista = new TextArea();
         txtLista.setEditable(false);
@@ -24,6 +24,8 @@ public class RelatorioView extends VBox {
         txtLista.setPrefHeight(720);
 
         Button btnFechar = new Button("Fechar");
+        btnFechar.setStyle("-fx-background-color: #C41F1F; -fx-text-fill: white; -fx-font-weight: bold;");
+        btnFechar.setPrefWidth(180);
         btnFechar.setOnAction(e -> r.run());
 
         getChildren().addAll(lblTitulo, txtLista, btnFechar);

@@ -2,7 +2,6 @@ package com.imobiliaria.view;
 
 import com.imobiliaria.controller.MainController;
 import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
-import com.imobiliaria.view.operacao.FormTransacao;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.*;
@@ -62,6 +61,9 @@ public class MainScene extends Scene {
         Menu mVenda = menuRelatorioVenda();
 
         MenuItem miSeguro = new MenuItem("Seguros");
+        miSeguro.setOnAction(_->{
+            controller.listarTodosSeguros();
+        });
         relatorios.getItems().addAll(mImovel, mUsuario, mAluguel, mVenda, miSeguro);
 
         return relatorios;

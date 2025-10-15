@@ -37,7 +37,11 @@ public class FormCliente extends GridPane {
         TextField txtEmail = new TextField();
 
         Button btnSalvar = new Button("Salvar");
+        btnSalvar.setPrefWidth(180);
+        btnSalvar.setStyle("-fx-background-color: #4CAF50; -fx-text-fil: white; -fx-font-weight: bold");
         Button btnCancelar = new Button("Cancelar");
+        btnCancelar.setPrefWidth(180);
+        btnCancelar.setStyle("-fx-background-color: #C41F1F; -fx-text-fill: white; -fx-font-weight: bold");
 
         this.add(new Label("CPF:"), 0, 0);
         this.add(txtCpf, 1, 0);
