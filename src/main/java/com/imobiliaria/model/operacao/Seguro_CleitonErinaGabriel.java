@@ -14,11 +14,11 @@ public class Seguro_CleitonErinaGabriel implements Serializable {
 
     @Override
     public String toString(){
-        return codigoSeguro + "\n"
-        + nomeSeguradora + "\n"
-        + tipo + "\n"
-        + descricao + "\n"
-        + valor + "\n";
+        return "\nCódigo: "+codigoSeguro
+        + "\nSeguradora: "+nomeSeguradora
+        + "\nTipo: "+tipo
+        +"\nDescrição:" + descricao
+        +"\nPreço: R$ "+ valor + "\n";
     }
 
     //construtores

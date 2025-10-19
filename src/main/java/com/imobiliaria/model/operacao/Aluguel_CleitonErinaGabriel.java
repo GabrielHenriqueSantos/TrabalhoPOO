@@ -29,16 +29,10 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
     public float calcularValorTotal(float bonificacao) {
         float valorTotal = valorTotalAluguel;
 
-        if(!verificarAtraso()){ //o cliente ganha um desconto por pagar dentro do prazo
+        if(pago){ //o cliente ganha um desconto por pagar dentro do prazo
             valorTotal = valorTotal - (valorTotalAluguel * bonificacao);
         }
-
-        if(possuiSeguro()){
-            for(Seguro_CleitonErinaGabriel i : segurosContratados) {
-                valorTotal += i.getValor();
-            }
-        }
-
+        pago = true;
         return valorTotal;
     }
 
@@ -46,29 +40,37 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
         return !segurosContratados.isEmpty();
     }
 
-    public boolean verificarAtraso(){
+    private boolean verificarAtraso(){
         return LocalDate.now().isAfter(dataPagamentoMensal);
     }
 
-    @Override
-    public String toString(){
-        return codigoAluguel + "\n"
-                + cliente.toString() + "\n"
-                + corretor.toString() + "\n"
-                + imovel.toString() + "\n"
-                + dataAluguel.toString() + "\n"
-                + dataDevolucao.toString() + "\n"
-                + dataPagamentoMensal.toString() + "\n"
-                + valorTotalAluguel + "\n"
-                + formaPagamento.toString() + "\n"
-                + segurosContratados.toString() + "\n"
-                + finalizado + "\n"
-                + pago + "\n";
+    public void atualizaDataPagamento(){
+        pago = !verificarAtraso();
     }
+
+    @Override
+    public String toString() {
+        return "Código: " + codigoAluguel + "\n"
+                + "Cliente:\n\tCódigo: " + cliente.getCodigoUsuario() + "\n"
+                + "\tNome: " + cliente.getNome() + "\n"
+                + "Corretor:\n\tCódigo: " + corretor.getCodigoUsuario() + "\n"
+                + "\tNome: " + corretor.getNome() + "\n"
+                + "Imóvel:\n\tCódigo: " + imovel.getCodigoImovel() + "\n"
+                + "\tEndereço: " + imovel.getEndereco() + "\n"
+                + "Data do próximo Aluguel: " + dataAluguel + "\n"
+                + "Data de Devolução: " + dataDevolucao + "\n"
+                + "Data Pagamento Mensal: " + dataPagamentoMensal + "\n"
+                + "Valor Total: R$" + valorTotalAluguel + "\n"
+                + "Forma de Pagamento:\n\t" + formaPagamento.toString() + "\n"
+                + "Seguros Contratados: " + segurosContratados.toString() + "\n"
+                + (finalizado ? "Finalizado" : "Em andamento") + "\n"
+                + (pago ? "Pago" : "Pendente") + "\n";
+    }
+
 
     //construtores
 
-    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, Pagamento_CleitonErinaGabriel formaPagamento, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
+    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
         this.codigoAluguel = GeradorCodigo_CleitonErinaGabriel.gerar("AL");
         this.cliente = cliente;
         this.corretor = corretor;
@@ -76,11 +78,10 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
         this.dataAluguel = LocalDate.now();
         this.dataDevolucao = dataDevolucao;
         this.dataPagamentoMensal = dataPagamentoMensal;
-        this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
-        this.formaPagamento = formaPagamento;
         this.segurosContratados = segurosContratados;
+        this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
         this.finalizado = false;
-        this.pago = false;
+        this.pago = true;
     }
 
     public float valorTotalSeguro(){

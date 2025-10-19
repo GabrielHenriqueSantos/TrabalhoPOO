@@ -22,14 +22,17 @@ public class Venda_CleitonErinaGabriel implements Serializable {
 
     @Override
     public String toString(){
-        return codigoVenda + "\n"
-                + cliente + "\n"
-                + corretor.toString() + "\n"
-                + imovel.toString() + "\n"
-                + dataVenda.toString() + "\n"
-                + valorTotalVenda + "\n"
-                + formaPagamento.toString() + "\n"
-                + finalizada + "\n";
+        return "Código: "+codigoVenda + "\n"
+                +"Cliente:\n\tCódigo:"+ cliente.getCodigoUsuario() + "\n"
+                +"\tNome: "+cliente.getNome()+"\n"
+                +"Corretor:\n\tCódigo: "+corretor.getCodigoUsuario() + "\n"
+                +"\tNome: "+corretor.getNome()+"\n"
+                +"Imóvel:\n\tCódigo: " +  imovel.getCodigoImovel() + "\n"
+                +"\tEndereço: "+imovel.getEndereco()+"\n"
+                +"Data da Venda: "+ dataVenda.toString() + "\n"
+                + "Valor: R$" +valorTotalVenda + "\n"
+                + "Pagamento:\n "+formaPagamento.toString() + "\n"
+                + (finalizada ? "Finalizada" : "Em andamento") + "\n";
     }
 
     public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {

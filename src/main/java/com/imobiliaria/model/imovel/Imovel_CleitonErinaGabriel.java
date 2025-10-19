@@ -49,6 +49,10 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
         return valorAluguel;
     }
 
+    public float getValorVenda() {
+        return valorVenda;
+    }
+
     public Operacao getTipoOperacao() {
         return tipoOperacao;
     }
@@ -57,20 +61,24 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
         return disponivel;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
     public void setDisponivel(boolean disponivel){
         this.disponivel = disponivel;
     }
 
     @Override
     public String toString() {
-        return "Imóvel nº"+codigoImovel
+        return "Imóvel nº: "+codigoImovel
                 +"\nEndereço: "+endereco
                 +"\nData de construção: "+getDataConstrucao_String()
                 +"\nÁrea Total: " +areaTotal+"m^2 Área Construida: "+areaConstruida
                 +"\nQuantidade de Banheiros: "+ qtdBanheiros
                 +"\nQuantidade de Dormitórios: "+qtdDormitórios
                 +"\nVagas na Garagem: "+qtdVagasGaragem
-                +"\nValor IPTU: "+valorIPTU
-                +((tipoOperacao == Operacao.VENDA)?"\nValor Venda: "+valorVenda:"\nValor aluguel base: "+getValorAluguel());
+                +"\nValor IPTU: R$"+valorIPTU
+                +((tipoOperacao == Operacao.VENDA)?"\nValor Venda: R$"+valorVenda:"\nValor aluguel base: R$"+getValorAluguel());
     }
 }
