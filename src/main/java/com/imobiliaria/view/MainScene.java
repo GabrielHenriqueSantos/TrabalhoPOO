@@ -15,8 +15,8 @@ import javafx.scene.text.Text;
 
 
 public class MainScene extends Scene {
-    private static final double MIN_WIDTH = 1280.0;
-    private static final double MIN_HEIGHT = 720.0;
+    private static final double MIN_WIDTH = 854.0;
+    private static final double MIN_HEIGHT = 480;
 
     private final MainController controller;
 

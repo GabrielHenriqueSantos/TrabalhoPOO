@@ -15,7 +15,7 @@ public class Main extends Application {
         MainScene mainscene = new MainScene();
         stage.setScene(mainscene);
         stage.setTitle("Imobiliaria");
-        stage.setMaximized(false);
+        stage.setMaximized(true);
         stage.show();
         stage.setOnCloseRequest(e->{
             mainscene.salvarESair();
