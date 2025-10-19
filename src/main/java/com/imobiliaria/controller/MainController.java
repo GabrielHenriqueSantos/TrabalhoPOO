@@ -13,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 public class MainController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;

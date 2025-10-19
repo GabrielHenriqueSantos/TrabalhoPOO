@@ -12,7 +12,7 @@ public class Comercial_CleitonErinaGabriel extends Imovel_CleitonErinaGabriel{
     }
 
     public float getValorAluguel(){
-        return super.valorAluguel * taxaImpostoFederal;
+        return super.valorAluguel + taxaImpostoFederal;
     }
 
     public String toString(){

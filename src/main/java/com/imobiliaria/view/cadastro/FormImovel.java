@@ -28,7 +28,8 @@ public class FormImovel extends GridPane {
         this.getColumnConstraints().addAll(col1, col2);
 
         TextField txtEndereco = new TextField();
-        DatePicker dpDataConstrucao = new DatePicker();
+        DatePicker dpDataConstrucao = new DatePicker(LocalDate.now());
+        dpDataConstrucao.setEditable(false);
         TextField txtAreaTotal = new TextField();
         TextField txtAreaConstruida = new TextField();
         TextField txtDormitorios = new TextField();
@@ -40,14 +41,18 @@ public class FormImovel extends GridPane {
 
         ComboBox<Operacao> cbOperacao = new ComboBox<>();
         cbOperacao.getItems().addAll(Operacao.values());
+        cbOperacao.getSelectionModel().selectFirst();
 
         ComboBox<String> cbTipoImovel = new ComboBox<>();
         cbTipoImovel.getItems().addAll("Casa Residencial", "Prédio Residencial", "Comercial");
+        cbTipoImovel.getSelectionModel().selectFirst();
 
         TextField txtAndar = new TextField();
         TextField txtNumApto = new TextField();
         TextField txtCondominio = new TextField();
         TextField txtTaxaFederal = new TextField();
+        Label lblVenda = new Label("Valor Venda:");
+        Label lblAluguel = new Label("Valor Aluguel:");
 
         this.add(new Label("Tipo de Imóvel:"), 0, 0);
         this.add(cbTipoImovel, 1, 0);
@@ -67,9 +72,9 @@ public class FormImovel extends GridPane {
         this.add(txtVagas, 1, 7);
         this.add(new Label("Valor IPTU:"), 0, 8);
         this.add(txtIPTU, 1, 8);
-        this.add(new Label("Valor Venda:"), 0, 9);
+        this.add(lblVenda, 0, 9);
         this.add(txtVenda, 1, 9);
-        this.add(new Label("Valor Aluguel:"), 0, 10);
+        this.add(lblAluguel, 0, 10);
         this.add(txtAluguel, 1, 10);
         this.add(new Label("Operação:"), 0, 11);
         this.add(cbOperacao, 1, 11);
@@ -111,6 +116,14 @@ public class FormImovel extends GridPane {
 
             lblTaxaFederal.setVisible(isComercial);
             txtTaxaFederal.setVisible(isComercial);
+        });
+
+        cbOperacao.setOnAction(_->{
+            boolean isAluguel = cbOperacao.getValue() == Operacao.ALUGUEL;
+            txtAluguel.setVisible(isAluguel);
+            lblAluguel.setVisible(isAluguel);
+            lblVenda.setVisible(!isAluguel);
+            txtVenda.setVisible(!isAluguel);
         });
 
         Button btnSalvar = new Button("Salvar");

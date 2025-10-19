@@ -2,10 +2,16 @@ package com.imobiliaria.view;
 
 import com.imobiliaria.controller.MainController;
 import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 
 public class MainScene extends Scene {
@@ -15,12 +21,17 @@ public class MainScene extends Scene {
     private final MainController controller;
 
     private final BorderPane layout;
+    private final VBox info;
 
     public MainScene() {
         super(new BorderPane(), MIN_WIDTH, MIN_HEIGHT, true, SceneAntialiasing.BALANCED);
         layout = (BorderPane) this.getRoot();
-        controller = new MainController(new Imobiliaria_CleitonErinaGabriel("Imobiliaria Yeager", "Shiganshina"), layout);
+        String nomeImo = "Imobiliaria Yeager";
+        String endereco = "Shiganshina, 660";
+        controller = new MainController(new Imobiliaria_CleitonErinaGabriel(nomeImo, endereco), layout);
+        info = infoImobiliaria(nomeImo,endereco);
         layout.setTop(initMenuBar());
+        layout.setCenter(info);
     }
 
     private MenuBar initMenuBar() {
@@ -185,6 +196,23 @@ public class MainScene extends Scene {
 
     public void salvarESair(){
         controller.salvarESair();
+    }
+
+    public VBox infoImobiliaria(String nome, String end){
+        Text nomeImobiliaria = new Text(nome);
+        nomeImobiliaria.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        nomeImobiliaria.setFill(Color.DARKBLUE);
+
+        Text endereco = new Text(end);
+        endereco.setFont(Font.font("Arial", FontWeight.NORMAL, 18));
+        endereco.setFill(Color.DIMGRAY);
+
+        VBox info = new VBox(5); // espaçamento entre as linhas
+        info.setAlignment(Pos.CENTER);
+        info.getChildren().addAll(nomeImobiliaria, endereco);
+
+        return info;
+
     }
 
 }

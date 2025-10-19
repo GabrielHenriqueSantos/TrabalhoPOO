@@ -30,7 +30,7 @@ public class Venda_CleitonErinaGabriel implements Serializable {
                 +"Imóvel:\n\tCódigo: " +  imovel.getCodigoImovel() + "\n"
                 +"\tEndereço: "+imovel.getEndereco()+"\n"
                 +"Data da Venda: "+ dataVenda.toString() + "\n"
-                + "Valor: " +valorTotalVenda + "\n"
+                + "Valor: R$" +valorTotalVenda + "\n"
                 + "Pagamento:\n "+formaPagamento.toString() + "\n"
                 + (finalizada ? "Finalizada" : "Em andamento") + "\n";
     }

@@ -6,15 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="17f4de53-b81c-4432-8168-686a0ce0c3a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/imobiliaria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/imobiliaria/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Comercial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Comercial_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Aluguel_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Aluguel_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Seguro_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Seguro_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Venda_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Venda_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/Dialog/DialogSelecionarData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/Dialog/DialogSelecionarData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/RelatorioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/RelatorioView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormCorretor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormCorretor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormSeguro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormSeguro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/FormTransacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/FormTransacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +60,14 @@
   &quot;keyToString&quot;: {
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Imobiliaria [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Imobiliaria [javafx:jlink].executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/gui&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -69,13 +78,18 @@
       <recent name="com.imobiliaria.view.cadastro" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn javafx:jlink" />
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.imobiliaria.imobiliaria.HelloApplication" />
       <module name="Imobiliaria" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.imobiliaria.imobiliaria.*" />
+          <option name="PATTERN" value="com.imobiliaria.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,7 +102,7 @@
       <module name="Imobiliaria" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.imobiliaria.imobiliaria.*" />
+          <option name="PATTERN" value="com.imobiliaria.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

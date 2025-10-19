@@ -29,16 +29,10 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
     public float calcularValorTotal(float bonificacao) {
         float valorTotal = valorTotalAluguel;
 
-        if(!verificarAtraso()){ //o cliente ganha um desconto por pagar dentro do prazo
+        if(pago){ //o cliente ganha um desconto por pagar dentro do prazo
             valorTotal = valorTotal - (valorTotalAluguel * bonificacao);
         }
-
-        if(possuiSeguro()){
-            for(Seguro_CleitonErinaGabriel i : segurosContratados) {
-                valorTotal += i.getValor();
-            }
-        }
-
+        pago = true;
         return valorTotal;
     }
 
@@ -46,8 +40,12 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
         return !segurosContratados.isEmpty();
     }
 
-    public boolean verificarAtraso(){
+    private boolean verificarAtraso(){
         return LocalDate.now().isAfter(dataPagamentoMensal);
+    }
+
+    public void atualizaDataPagamento(){
+        pago = !verificarAtraso();
     }
 
     @Override
@@ -59,10 +57,10 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
                 + "\tNome: " + corretor.getNome() + "\n"
                 + "Imóvel:\n\tCódigo: " + imovel.getCodigoImovel() + "\n"
                 + "\tEndereço: " + imovel.getEndereco() + "\n"
-                + "Data do Aluguel: " + dataAluguel + "\n"
+                + "Data do próximo Aluguel: " + dataAluguel + "\n"
                 + "Data de Devolução: " + dataDevolucao + "\n"
                 + "Data Pagamento Mensal: " + dataPagamentoMensal + "\n"
-                + "Valor Total: " + valorTotalAluguel + "\n"
+                + "Valor Total: R$" + valorTotalAluguel + "\n"
                 + "Forma de Pagamento:\n\t" + formaPagamento.toString() + "\n"
                 + "Seguros Contratados: " + segurosContratados.toString() + "\n"
                 + (finalizado ? "Finalizado" : "Em andamento") + "\n"
@@ -80,10 +78,10 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
         this.dataAluguel = LocalDate.now();
         this.dataDevolucao = dataDevolucao;
         this.dataPagamentoMensal = dataPagamentoMensal;
-        this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
         this.segurosContratados = segurosContratados;
+        this.valorTotalAluguel = imovel.getValorAluguel()+valorTotalSeguro();
         this.finalizado = false;
-        this.pago = false;
+        this.pago = true;
     }
 
     public float valorTotalSeguro(){

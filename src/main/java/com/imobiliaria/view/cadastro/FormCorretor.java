@@ -33,7 +33,8 @@ public class FormCorretor extends GridPane {
         TextField txtCpf = new TextField();
         TextField txtNome = new TextField();
         TextField txtRg = new TextField();
-        DatePicker dpDataNascimento = new DatePicker();
+        DatePicker dpDataNascimento = new DatePicker(LocalDate.now());
+        dpDataNascimento.setEditable(false);
         TextField txtEndereco = new TextField();
         TextField txtCep = new TextField();
         TextField txtTelefone = new TextField();
@@ -41,7 +42,8 @@ public class FormCorretor extends GridPane {
         TextField txtCreci = new TextField();
         TextField txtSalario = new TextField();
         TextField txtPis = new TextField();
-        DatePicker dpDataAdmissao = new DatePicker();
+        DatePicker dpDataAdmissao = new DatePicker(LocalDate.now());
+        dpDataAdmissao.setEditable(false);
 
         Button btnSalvar = new Button("Salvar");
         btnSalvar.setPrefWidth(180);

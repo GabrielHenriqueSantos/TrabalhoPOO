@@ -33,7 +33,7 @@ public class PredioResidencial_CleitonErinaGabriel extends Imovel_CleitonErinaGa
 
     @Override
     public String toString() {
-        return "Apartamento" + super.toString()+"\nAndar: "+andar
-                +"Número Apartamento: "+numApto+"\nValor Condomínio: "+valorCondominio;
+        return "Apartamento\n" + super.toString()+"\nAndar: "+andar
+                +"\nNúmero Apartamento: "+numApto+"\nValor Condomínio: R$"+valorCondominio;
     }
 }

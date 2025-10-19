@@ -30,7 +30,8 @@ public class FormCliente extends GridPane {
         TextField txtCpf = new TextField();
         TextField txtNome = new TextField();
         TextField txtRg = new TextField();
-        DatePicker dpDataNascimento = new DatePicker();
+        DatePicker dpDataNascimento = new DatePicker(LocalDate.now());
+        dpDataNascimento.setEditable(false);
         TextField txtEndereco = new TextField();
         TextField txtCep = new TextField();
         TextField txtTelefone = new TextField();

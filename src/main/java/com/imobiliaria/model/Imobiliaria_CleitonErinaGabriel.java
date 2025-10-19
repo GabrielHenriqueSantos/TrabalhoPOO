@@ -36,6 +36,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         this.nome = nome;
         this.endereco = endereco;
         this.alugueis = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_ALUGUEIS);
+        atualizarAtrasos();
         this.vendas = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_VENDAS);
         this.imoveis = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_IMOVEIS);
         this.clientes = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_CLIENTES);
@@ -75,6 +76,12 @@ public class Imobiliaria_CleitonErinaGabriel {
         } catch (IOException e) {
             System.err.println("Erro ao Salvar arquivo: " + e.getMessage());
             return false;
+        }
+    }
+
+    private void atualizarAtrasos(){
+        for(Aluguel_CleitonErinaGabriel a:alugueis){
+            a.atualizaDataPagamento();
         }
     }
 
@@ -366,9 +373,9 @@ public class Imobiliaria_CleitonErinaGabriel {
     public String listarImoveisVendidosCliente(String codCliente) {
         StringBuilder sb = new StringBuilder();
         sb.append("Todos Imóveis vendidos ao Cliente :").append(codCliente).append("\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (aluguel.getCliente().getCodigoUsuario().equals(codCliente)) {
-                sb.append(aluguel).append("\n");
+        for (Venda_CleitonErinaGabriel venda : vendas) {
+            if (venda.getCliente().getCodigoUsuario().equals(codCliente)) {
+                sb.append(venda).append("\n");
             }
         }
         return sb.toString();

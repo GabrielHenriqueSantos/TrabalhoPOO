@@ -4,6 +4,7 @@ import com.imobiliaria.controller.TransacaoController;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.util.Callback;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,7 +44,6 @@ public class FormTransacao extends VBox {
         HBox pagamentoBox = new HBox(15, rbDinheiro, rbCartao);
         pagamentoBox.setAlignment(Pos.CENTER_LEFT);
 
-        /*Combobox*/
         ComboBox<String> cbCliente = new ComboBox<>();
         cbCliente.getItems().addAll(controller.getCodClientes());
         cbCliente.getSelectionModel().selectFirst();
@@ -56,8 +56,12 @@ public class FormTransacao extends VBox {
         cbImovel.getItems().addAll(controller.getCodImoveisAluguel());
         cbImovel.getSelectionModel().selectFirst();
 
-        DatePicker dpDataDevolucao = new DatePicker();
-        DatePicker dpDataPagamentoMensal = new DatePicker();
+        DatePicker dpDataDevolucao = new DatePicker(LocalDate.now().plusMonths(6));
+        dpDataDevolucao.setEditable(false);
+
+        //Cria DatePicker
+        DatePicker dpDataPagamentoMensal = criaDataPagamento();
+
         TextField txtSeguros = new TextField();
         txtSeguros.setPromptText("códigos separados por vírgula");
 
@@ -107,8 +111,10 @@ public class FormTransacao extends VBox {
                 LocalDate dataDev = dpDataDevolucao.getValue();
                 LocalDate dataPag = dpDataPagamentoMensal.getValue();
                 List<String> seguros = new ArrayList<>();
-                if (!txtSeguros.getText().isEmpty()) {
-                    seguros = Arrays.asList(txtSeguros.getText().split(","));
+                String strSeguros = txtSeguros.getText().replaceAll("\\s+","");
+
+                if (!strSeguros.isEmpty()) {
+                    seguros = Arrays.asList(strSeguros.split(","));
                 }
                 String metodo = rbCartao.isSelected() ? "Cartão" : "Dinheiro";
                 boolean ok = controller.novoAluguel(metodo,codCliente,codCorretor,codImovel,dataDev,dataPag,seguros);
@@ -143,7 +149,25 @@ public class FormTransacao extends VBox {
             rbDinheiro.setDisable(isVenda);
             cbImovel.getItems().clear();
             cbImovel.getItems().addAll(isVenda ? controller.getCodImoveisVenda() : controller.getCodImoveisAluguel());
+            cbImovel.getSelectionModel().selectFirst();
         });
+    }
+
+    private DatePicker criaDataPagamento(){
+        DatePicker datePicker = new DatePicker(LocalDate.now().plusDays(5));
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #eee; -fx-text-fill: #888;");
+                }
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
+
+        return datePicker;
     }
 
     private void mostrarAlerta(boolean sucesso, String tipo) {
