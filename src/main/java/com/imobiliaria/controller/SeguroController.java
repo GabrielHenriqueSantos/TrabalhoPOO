@@ -6,8 +6,8 @@ public class SeguroController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
     private Runnable onFecharForm;
 
-    public SeguroController(Imobiliaria_CleitonErinaGabriel imobiliaria){
-        this.imobiliaria = imobiliaria;
+    public SeguroController(){
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
     }
 
     public void setOnFecharForm(Runnable r) {

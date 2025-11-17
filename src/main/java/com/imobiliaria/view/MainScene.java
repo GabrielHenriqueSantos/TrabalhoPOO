@@ -28,7 +28,7 @@ public class MainScene extends Scene {
         layout = (BorderPane) this.getRoot();
         String nomeImo = "Imobiliaria Yeager";
         String endereco = "Shiganshina, 660";
-        controller = new MainController(new Imobiliaria_CleitonErinaGabriel(nomeImo, endereco), layout);
+        controller = new MainController(layout);
         info = infoImobiliaria(nomeImo,endereco);
         layout.setTop(initMenuBar());
         layout.setCenter(info);

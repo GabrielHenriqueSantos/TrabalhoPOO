@@ -8,8 +8,8 @@ public class ClienteController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
     private Runnable onFecharForm;
 
-    public ClienteController(Imobiliaria_CleitonErinaGabriel imobiliaria) {
-        this.imobiliaria = imobiliaria;
+    public ClienteController() {
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
     }
     public void setOnFecharForm(Runnable r) {
         this.onFecharForm = r;

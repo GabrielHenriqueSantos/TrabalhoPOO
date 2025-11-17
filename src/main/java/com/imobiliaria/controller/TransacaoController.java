@@ -24,8 +24,8 @@ public class TransacaoController {
     private final List<String> codCorretores;
     private Runnable onFecharForm;
 
-    public TransacaoController(Imobiliaria_CleitonErinaGabriel imobiliaria){
-        this.imobiliaria = imobiliaria;
+    public TransacaoController(){
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
         this.codImoveisVenda = imobiliaria.getCodigosImoveisDisp(Operacao.VENDA);
         this.codImoveisAluguel = imobiliaria.getCodigosImoveisDisp(Operacao.ALUGUEL);
         this.codClientes = imobiliaria.getCodigosClientes();

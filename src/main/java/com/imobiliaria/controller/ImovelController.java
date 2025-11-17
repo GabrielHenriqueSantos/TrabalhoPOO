@@ -9,8 +9,8 @@ public class ImovelController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
     private Runnable onFecharForm;
 
-    public ImovelController(Imobiliaria_CleitonErinaGabriel imobiliaria) {
-        this.imobiliaria = imobiliaria;
+    public ImovelController() {
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
     }
 
     public void setOnFecharForm(Runnable r) {

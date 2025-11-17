@@ -8,8 +8,8 @@ public class CorretorController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
     private Runnable onFecharForm;
 
-    public CorretorController(Imobiliaria_CleitonErinaGabriel imobiliaria){
-        this.imobiliaria = imobiliaria;
+    public CorretorController(){
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
     }
 
     public void setOnFecharForm(Runnable r) {

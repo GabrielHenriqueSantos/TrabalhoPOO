@@ -22,19 +22,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Imobiliaria_CleitonErinaGabriel {
-    private String nome;
-    private String endereco;
+    private static volatile Imobiliaria_CleitonErinaGabriel instance;
+
+    private String NOME = "Imobiliaria Yeager";
+    private String ENDERECO = "Shiganshina, 660";
     private ArrayList<Aluguel_CleitonErinaGabriel> alugueis;
     private ArrayList<Venda_CleitonErinaGabriel> vendas;
     private ArrayList<Imovel_CleitonErinaGabriel> imoveis;
     private ArrayList<Usuario_CleitonErinaGabriel> clientes;
     private ArrayList<Usuario_CleitonErinaGabriel> corretores;
-
     private ArrayList<Seguro_CleitonErinaGabriel> seguros;
 
-    public Imobiliaria_CleitonErinaGabriel(String nome, String endereco) {
-        this.nome = nome;
-        this.endereco = endereco;
+    private Imobiliaria_CleitonErinaGabriel() {
         this.alugueis = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_ALUGUEIS);
         atualizarAtrasos();
         this.vendas = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_VENDAS);
@@ -42,6 +41,15 @@ public class Imobiliaria_CleitonErinaGabriel {
         this.clientes = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_CLIENTES);
         this.corretores = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_CORRETORES);
         this.seguros = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_SEGUROS);
+    }
+
+    public static Imobiliaria_CleitonErinaGabriel getInstance() {
+        if(instance == null){
+            synchronized (Imobiliaria_CleitonErinaGabriel.class){
+                if(instance == null) instance = new Imobiliaria_CleitonErinaGabriel();
+            }
+        }
+        return instance;
     }
 
     @SuppressWarnings("unchecked")
@@ -95,11 +103,11 @@ public class Imobiliaria_CleitonErinaGabriel {
     }
 
     public String getEndereco() {
-        return endereco;
+        return ENDERECO;
     }
 
     public String getNome() {
-        return nome;
+        return NOME;
     }
 
     public List<String> getCodigosImoveisDisp(Operacao op){

@@ -18,8 +18,8 @@ public class MainController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
     private final BorderPane root;
 
-    public MainController(Imobiliaria_CleitonErinaGabriel imobiliaria, BorderPane root){
-        this.imobiliaria = imobiliaria;
+    public MainController(BorderPane root){
+        this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
         this.root = root;
     }
 
@@ -28,28 +28,28 @@ public class MainController {
     }
 
     public void abrirCadastroCliente(){
-        ClienteController control = new ClienteController(imobiliaria);
+        ClienteController control = new ClienteController();
         control.setOnFecharForm(() -> root.setCenter(null));
         FormCliente form = new FormCliente(control);
         root.setCenter(form);
     }
 
     public void abrirCadastroCorretor(){
-        CorretorController control = new CorretorController(imobiliaria);
+        CorretorController control = new CorretorController();
         control.setOnFecharForm(()->root.setCenter(null));
         FormCorretor form = new FormCorretor(control);
         root.setCenter(form);
     }
 
     public void abrirCadastroImovel(){
-        ImovelController control = new ImovelController(imobiliaria);
+        ImovelController control = new ImovelController();
         control.setOnFecharForm(()->root.setCenter(null));
         FormImovel form = new FormImovel(control);
         root.setCenter(form);
     }
 
     public void abrirCadastroSeguro(){
-        SeguroController control = new SeguroController(imobiliaria);
+        SeguroController control = new SeguroController();
         control.setOnFecharForm(()->root.setCenter(null));
         FormSeguro form = new FormSeguro(control);
         root.setCenter(form);
@@ -61,7 +61,7 @@ public class MainController {
     }
 
     public void novaTransacao() {
-        TransacaoController control = new TransacaoController(imobiliaria);
+        TransacaoController control = new TransacaoController();
         control.setOnFecharForm(()->root.setCenter(null));
         FormTransacao form = new FormTransacao(control);
         root.setCenter(form);
