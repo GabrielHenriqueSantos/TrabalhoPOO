@@ -4,6 +4,7 @@ import com.imobiliaria.controller.TransacaoController;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
@@ -123,6 +124,12 @@ public class FormTransacao extends VBox {
             }else{
                 mostrarErro("Selecione o tipo de transação (Venda ou Aluguel).");
             }
+        });
+
+        controller.setOnPagamento(req ->{
+            JanelaPagamento jPagamento = new JanelaPagamento(req.metodo(), req.valor(), controller);
+            jPagamento.initModality(Modality.APPLICATION_MODAL);
+            jPagamento.showAndWait();
         });
 
         Button btnCancelar = new Button("Cancelar");

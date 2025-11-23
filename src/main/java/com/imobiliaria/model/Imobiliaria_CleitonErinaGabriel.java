@@ -182,30 +182,12 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novoComercio.getCodigoImovel();
     }
 
-    public Venda_CleitonErinaGabriel novaVenda(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
-        if (cliente == null || corretor == null || imovel == null)
-            return null;
-        imovel.setDisponivel(false);
-        Venda_CleitonErinaGabriel venda = new Venda_CleitonErinaGabriel(cliente, corretor, imovel, valorTotalVenda, formaPagamento);
-        vendas.add(venda);
-        return venda;
+    public boolean novaVenda(Venda_CleitonErinaGabriel venda) {
+        return vendas.add(venda);
     }
 
-    public Aluguel_CleitonErinaGabriel novoAluguel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, List<String> segurosContratados) {
-        if (cliente == null || corretor == null || imovel == null)
-            return null;
-        imovel.setDisponivel(false);
-        ArrayList<Seguro_CleitonErinaGabriel> segAl = new ArrayList<>();
-        Seguro_CleitonErinaGabriel seg;
-        for (String codSeg : segurosContratados) {
-            seg = buscaSeguro(codSeg);
-            if (seg != null) {
-                segAl.add(seg);
-            }
-        }
-        Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel(cliente, corretor, imovel, dataDevolucao, dataPagamentoMensal, segAl);
-        alugueis.add(aluguel);
-        return aluguel;
+    public boolean novoAluguel(Aluguel_CleitonErinaGabriel aluguel) {
+        return  alugueis.add(aluguel);
     }
 
     public String novoSeguro(String nomeSeguradora, String tipo, String descricao, float valor) {

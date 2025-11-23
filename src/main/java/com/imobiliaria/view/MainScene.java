@@ -21,17 +21,13 @@ public class MainScene extends Scene {
     private final MainController controller;
 
     private final BorderPane layout;
-    private final VBox info;
 
     public MainScene() {
         super(new BorderPane(), MIN_WIDTH, MIN_HEIGHT, true, SceneAntialiasing.BALANCED);
         layout = (BorderPane) this.getRoot();
-        String nomeImo = "Imobiliaria Yeager";
-        String endereco = "Shiganshina, 660";
         controller = new MainController(layout);
-        info = infoImobiliaria(nomeImo,endereco);
         layout.setTop(initMenuBar());
-        layout.setCenter(info);
+        layout.setCenter(infoImobiliaria());
     }
 
     private MenuBar initMenuBar() {
@@ -198,7 +194,9 @@ public class MainScene extends Scene {
         controller.salvarESair();
     }
 
-    public VBox infoImobiliaria(String nome, String end){
+    public VBox infoImobiliaria(){
+        String nome = Imobiliaria_CleitonErinaGabriel.getInstance().getNome();
+        String end = Imobiliaria_CleitonErinaGabriel.getInstance().getEndereco();
         Text nomeImobiliaria = new Text(nome);
         nomeImobiliaria.setFont(Font.font("Arial", FontWeight.BOLD, 36));
         nomeImobiliaria.setFill(Color.DARKBLUE);

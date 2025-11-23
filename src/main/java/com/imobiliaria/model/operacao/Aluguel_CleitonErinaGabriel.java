@@ -1,6 +1,7 @@
 package com.imobiliaria.model.operacao;
 
 import com.imobiliaria.config.GeradorCodigo_CleitonErinaGabriel;
+import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Aluguel_CleitonErinaGabriel implements Serializable {
+public class Aluguel_CleitonErinaGabriel implements Serializable, Transacao {
     private static final long serialVersionUID = 1L;
     private String codigoAluguel;
     private Cliente_CleitonErinaGabriel cliente;
@@ -24,6 +25,52 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
     private ArrayList<Seguro_CleitonErinaGabriel> segurosContratados;
     private boolean finalizado;
     private boolean pago;
+
+
+    public static class Builder{
+        private Cliente_CleitonErinaGabriel cliente;
+        private Corretor_CleitonErinaGabriel corretor;
+        private Imovel_CleitonErinaGabriel imovel;
+        private LocalDate dataDevolucao;
+        private LocalDate dataPagamentoMensal;
+        private Pagamento_CleitonErinaGabriel formaPagamento;
+        private ArrayList<Seguro_CleitonErinaGabriel> segurosContratados;
+
+        public Builder cliente(Cliente_CleitonErinaGabriel c){
+            this.cliente = c;
+            return this;
+        }
+
+        public Builder corretor(Corretor_CleitonErinaGabriel cr){
+            this.corretor = cr;
+            return this;
+        }
+
+        public Builder imovel(Imovel_CleitonErinaGabriel im){
+            this.imovel = im;
+            return this;
+        }
+
+        public Builder dataDevolucao(LocalDate dd){
+            this.dataDevolucao = dd;
+            return this;
+        }
+
+        public Builder dataPagamentoMensal(LocalDate dp){
+            this.dataPagamentoMensal = dp;
+            return this;
+        }
+
+        public Builder segurosContratados(ArrayList<Seguro_CleitonErinaGabriel> sc){
+            this.segurosContratados = sc;
+            return this;
+        }
+
+        public Aluguel_CleitonErinaGabriel build(){
+             return new Aluguel_CleitonErinaGabriel(this.cliente, this.corretor, this.imovel, this.dataDevolucao, this.dataPagamentoMensal, this.segurosContratados);
+        }
+    }
+
 
     //funções
     public float calcularValorTotal(float bonificacao) {
@@ -70,7 +117,7 @@ public class Aluguel_CleitonErinaGabriel implements Serializable {
 
     //construtores
 
-    public Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
+    private Aluguel_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, ArrayList<Seguro_CleitonErinaGabriel> segurosContratados) {
         this.codigoAluguel = GeradorCodigo_CleitonErinaGabriel.gerar("AL");
         this.cliente = cliente;
         this.corretor = corretor;

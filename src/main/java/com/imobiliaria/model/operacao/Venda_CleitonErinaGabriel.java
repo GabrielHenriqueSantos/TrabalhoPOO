@@ -9,7 +9,7 @@ import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Venda_CleitonErinaGabriel implements Serializable {
+public class Venda_CleitonErinaGabriel implements Serializable, Transacao {
     private static final long serialVersionUID = 1L;
     private String codigoVenda;
     private Cliente_CleitonErinaGabriel cliente;
@@ -20,29 +20,45 @@ public class Venda_CleitonErinaGabriel implements Serializable {
     private Pagamento_CleitonErinaGabriel formaPagamento;
     private boolean finalizada;
 
-    @Override
-    public String toString(){
-        return "Código: "+codigoVenda + "\n"
-                +"Cliente:\n\tCódigo:"+ cliente.getCodigoUsuario() + "\n"
-                +"\tNome: "+cliente.getNome()+"\n"
-                +"Corretor:\n\tCódigo: "+corretor.getCodigoUsuario() + "\n"
-                +"\tNome: "+corretor.getNome()+"\n"
-                +"Imóvel:\n\tCódigo: " +  imovel.getCodigoImovel() + "\n"
-                +"\tEndereço: "+imovel.getEndereco()+"\n"
-                +"Data da Venda: "+ dataVenda.toString() + "\n"
-                + "Valor: R$" +valorTotalVenda + "\n"
-                + "Pagamento:\n "+formaPagamento.toString() + "\n"
-                + (finalizada ? "Finalizada" : "Em andamento") + "\n";
+    public static class Builder{
+        private Cliente_CleitonErinaGabriel cliente;
+        private Corretor_CleitonErinaGabriel corretor;
+        private Imovel_CleitonErinaGabriel imovel;
+        private float valorTotalVenda;
+
+        public Builder cliente(Cliente_CleitonErinaGabriel c){
+            this.cliente = c;
+            return this;
+        }
+
+        public Builder corretor(Corretor_CleitonErinaGabriel cr){
+            this.corretor = cr;
+            return this;
+        }
+
+        public Builder imovel(Imovel_CleitonErinaGabriel i){
+            this.imovel = i;
+            return this;
+        }
+
+        public Builder valorTotalVenda(float valor){
+            this.valorTotalVenda = valor;
+            return this;
+        }
+
+        public Venda_CleitonErinaGabriel build(){
+            Venda_CleitonErinaGabriel venda = new Venda_CleitonErinaGabriel(cliente,corretor,imovel,valorTotalVenda);
+            return venda;
+        }
     }
 
-    public Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda, Pagamento_CleitonErinaGabriel formaPagamento) {
+    private Venda_CleitonErinaGabriel(Cliente_CleitonErinaGabriel cliente, Corretor_CleitonErinaGabriel corretor, Imovel_CleitonErinaGabriel imovel, float valorTotalVenda) {
         this.codigoVenda = GeradorCodigo_CleitonErinaGabriel.gerar("VD");
         this.cliente = cliente;
         this.corretor = corretor;
         this.imovel = imovel;
         this.dataVenda = LocalDate.now();
         this.valorTotalVenda = valorTotalVenda;
-        this.formaPagamento = formaPagamento;
         this.finalizada = false;
     }
 
@@ -104,5 +120,20 @@ public class Venda_CleitonErinaGabriel implements Serializable {
 
     public void setFinalizada(boolean finalizada) {
         this.finalizada = finalizada;
+    }
+
+    @Override
+    public String toString() {
+        return "Código: " + codigoVenda + "\n"
+                + "Cliente:\n\tCódigo:" + cliente.getCodigoUsuario() + "\n"
+                + "\tNome: " + cliente.getNome() + "\n"
+                + "Corretor:\n\tCódigo: " + corretor.getCodigoUsuario() + "\n"
+                + "\tNome: " + corretor.getNome() + "\n"
+                + "Imóvel:\n\tCódigo: " + imovel.getCodigoImovel() + "\n"
+                + "\tEndereço: " + imovel.getEndereco() + "\n"
+                + "Data da Venda: " + dataVenda.toString() + "\n"
+                + "Valor: R$" + valorTotalVenda + "\n"
+                + "Pagamento:\n " + formaPagamento.toString() + "\n"
+                + (finalizada ? "Finalizada" : "Em andamento") + "\n";
     }
 }

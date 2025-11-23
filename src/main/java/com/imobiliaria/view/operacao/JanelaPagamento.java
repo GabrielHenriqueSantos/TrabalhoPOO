@@ -22,7 +22,7 @@ public class JanelaPagamento extends Stage {
     private final TransacaoController controller;
     private final String tipoPagamento;
 
-    public JanelaPagamento(String tipoPagamento, float valor, TransacaoController controller) {
+    public JanelaPagamento(String tipoPagamento, float valor, TransacaoController controller){
         this.controller = controller;
         this.tipoPagamento = tipoPagamento;
 
