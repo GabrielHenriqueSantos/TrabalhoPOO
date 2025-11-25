@@ -1,9 +1,14 @@
 package com.imobiliaria.controller;
 
 import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
+import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Operacao;
+import com.imobiliaria.model.imovel.TipoImovel;
+import com.imobiliaria.model.imovel.factory.FactoryImovel;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ImovelController {
     private final Imobiliaria_CleitonErinaGabriel imobiliaria;
@@ -17,38 +22,16 @@ public class ImovelController {
         this.onFecharForm = r;
     }
 
-    public String cadastrarImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                                   int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                                   float valorAluguel, Operacao tipoOperacao) {
-        String  cod = imobiliaria.novoImovel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros,
-                                                 qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
-        if (!cod.isBlank() && onFecharForm != null) {
+    public String cadastrarImovel(TipoImovel tipo, Map<String, Object> parametros){
+        Imovel_CleitonErinaGabriel im = FactoryImovel.factory(tipo,parametros);
+        String cod = imobiliaria.novoImovel(im);
+        if (!cod.isBlank() && onFecharForm != null){
             onFecharForm.run();
         }
         return cod;
     }
 
-    public String  cadastrarImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                                   int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                                   float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio) {
-        String  cod = imobiliaria.novoImovel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros,
-                                                qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, andar, numApto, valorCondominio);
-        if (!cod.isBlank() && onFecharForm != null) {
-            onFecharForm.run();
-        }
-        return cod;
-    }
 
-    public String  cadastrarImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                                   int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                                   float valorAluguel, Operacao tipoOperacao, float taxaImpostoFederal) {
-        String  cod = imobiliaria.novoImovel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros,
-                                                 qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao,taxaImpostoFederal);
-        if(!cod.isBlank() && onFecharForm != null){
-            onFecharForm.run();
-        }
-        return cod;
-    }
 
     public void cancelarCadastro(){
         if(onFecharForm != null)

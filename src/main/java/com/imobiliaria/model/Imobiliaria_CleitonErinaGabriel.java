@@ -43,7 +43,7 @@ public class Imobiliaria_CleitonErinaGabriel {
         this.seguros = carregarArquivo(Configuracao_CleitonErinaGabriel.ARQUIVO_SEGUROS);
     }
 
-    public static Imobiliaria_CleitonErinaGabriel getInstance() {
+    public static Imobiliaria_CleitonErinaGabriel getInstance(){
         if(instance == null){
             synchronized (Imobiliaria_CleitonErinaGabriel.class){
                 if(instance == null) instance = new Imobiliaria_CleitonErinaGabriel();
@@ -154,32 +154,10 @@ public class Imobiliaria_CleitonErinaGabriel {
     }
 
     //Novo Prédio residencial
-    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                              float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio) {
-        PredioResidencial_CleitonErinaGabriel novoAp = new PredioResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, andar, numApto, valorCondominio);
-        imoveis.add(novoAp);
-        return novoAp.getCodigoImovel();
-    }
 
-
-    //Nova Casa
-    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                              float valorAluguel, Operacao tipoOperacao) {
-        CasaResidencial_CleitonErinaGabriel novaCasa = new CasaResidencial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
-        imoveis.add(novaCasa);
-        return novaCasa.getCodigoImovel();
-    }
-
-
-    //Novo Predio Comeercial
-    public String novoImovel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida,
-                              int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda,
-                              float valorAluguel, Operacao tipoOperacao, float taxaImpostoFederal) {
-        Comercial_CleitonErinaGabriel novoComercio = new Comercial_CleitonErinaGabriel(endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao, taxaImpostoFederal);
-        imoveis.add(novoComercio);
-        return novoComercio.getCodigoImovel();
+    public String  novoImovel(Imovel_CleitonErinaGabriel imovel){
+        imoveis.add(imovel);
+        return imovel.getCodigoImovel();
     }
 
     public boolean novaVenda(Venda_CleitonErinaGabriel venda) {

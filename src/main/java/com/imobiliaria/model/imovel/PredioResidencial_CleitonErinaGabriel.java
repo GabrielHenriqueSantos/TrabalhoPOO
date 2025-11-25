@@ -8,8 +8,8 @@ public class PredioResidencial_CleitonErinaGabriel extends Imovel_CleitonErinaGa
     private int numApto;
     private float valorCondominio;
 
-    public PredioResidencial_CleitonErinaGabriel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio) {
-        super("PR", endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitórios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
+    public PredioResidencial_CleitonErinaGabriel(String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao, int andar, int numApto, float valorCondominio) {
+        super("PR", endereco, dataConstrucao, areaTotal, areaConstruida, qtdDormitorios, qtdBanheiros, qtdVagasGaragem, valorIPTU, valorVenda, valorAluguel, tipoOperacao);
         this.andar = andar;
         this.numApto = numApto;
         this.valorCondominio = valorCondominio;

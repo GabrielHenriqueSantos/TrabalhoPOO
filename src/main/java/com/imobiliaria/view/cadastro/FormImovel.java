@@ -2,6 +2,7 @@ package com.imobiliaria.view.cadastro;
 
 import com.imobiliaria.controller.ImovelController;
 import com.imobiliaria.model.imovel.Operacao;
+import com.imobiliaria.model.imovel.TipoImovel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -11,10 +12,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormImovel extends GridPane {
 
     private final ImovelController controller;
+    private boolean isAluguel = true;
 
     public FormImovel(ImovelController controller) {
         this.controller = controller;
@@ -41,11 +45,11 @@ public class FormImovel extends GridPane {
 
         ComboBox<Operacao> cbOperacao = new ComboBox<>();
         cbOperacao.getItems().addAll(Operacao.values());
-        cbOperacao.getSelectionModel().selectFirst();
 
-        ComboBox<String> cbTipoImovel = new ComboBox<>();
-        cbTipoImovel.getItems().addAll("Casa Residencial", "Prédio Residencial", "Comercial");
-        cbTipoImovel.getSelectionModel().selectFirst();
+
+        ComboBox<TipoImovel> cbTipoImovel = new ComboBox<>();
+        cbTipoImovel.getItems().addAll(TipoImovel.values());
+
 
         TextField txtAndar = new TextField();
         TextField txtNumApto = new TextField();
@@ -102,10 +106,13 @@ public class FormImovel extends GridPane {
         txtCondominio.setVisible(false);
         txtTaxaFederal.setVisible(false);
 
+        lblVenda.setVisible(false);
+        txtVenda.setVisible(false);
+
         cbTipoImovel.setOnAction(e -> {
-            String tipo = cbTipoImovel.getValue();
-            boolean isPredio = tipo != null && tipo.equals("Prédio Residencial");
-            boolean isComercial = tipo != null && tipo.equals("Comercial");
+            TipoImovel tipo = cbTipoImovel.getValue();
+            boolean isPredio = tipo == TipoImovel.PREDIO_RESIDENCIAL;
+            boolean isComercial = tipo == TipoImovel.COMERCIAL;
 
             lblAndar.setVisible(isPredio);
             txtAndar.setVisible(isPredio);
@@ -116,16 +123,18 @@ public class FormImovel extends GridPane {
 
             lblTaxaFederal.setVisible(isComercial);
             txtTaxaFederal.setVisible(isComercial);
+
         });
+        cbTipoImovel.getSelectionModel().selectFirst();
 
         cbOperacao.setOnAction(_->{
-            boolean isAluguel = cbOperacao.getValue() == Operacao.ALUGUEL;
+            isAluguel = cbOperacao.getValue() == Operacao.ALUGUEL;
             txtAluguel.setVisible(isAluguel);
             lblAluguel.setVisible(isAluguel);
             lblVenda.setVisible(!isAluguel);
             txtVenda.setVisible(!isAluguel);
         });
-
+        cbOperacao.getSelectionModel().selectFirst();
         Button btnSalvar = new Button("Salvar");
         btnSalvar.setPrefWidth(180);
         btnSalvar.setStyle("-fx-background-color: #4CAF50; -fx-text-fil: white; -fx-font-weight: bold");
@@ -136,47 +145,36 @@ public class FormImovel extends GridPane {
 
         btnSalvar.setOnAction(e -> {
             try {
-                String tipo = cbTipoImovel.getValue();
+                TipoImovel tipo = cbTipoImovel.getValue();
                 if (tipo == null) {
                     showAlert("Erro", "Selecione o tipo de imóvel.", Alert.AlertType.ERROR);
                     return;
                 }
-
-                String endereco = txtEndereco.getText();
-                LocalDate dataConstrucao = dpDataConstrucao.getValue();
-                float areaTotal = Float.parseFloat(txtAreaTotal.getText());
-                float areaConstruida = Float.parseFloat(txtAreaConstruida.getText());
-                int qtdDorms = Integer.parseInt(txtDormitorios.getText());
-                int qtdBanheiros = Integer.parseInt(txtBanheiros.getText());
-                int qtdVagas = Integer.parseInt(txtVagas.getText());
-                float valorIPTU = Float.parseFloat(txtIPTU.getText());
-                float valorVenda = Float.parseFloat(txtVenda.getText());
-                float valorAluguel = Float.parseFloat(txtAluguel.getText());
-                Operacao operacao = cbOperacao.getValue();
-
-                String cod = null;
+                Map<String, Object> parametros = new HashMap<>();
+                parametros.put("endereco", txtEndereco.getText());
+                parametros.put("dataConstrucao", dpDataConstrucao.getValue());
+                parametros.put("areaTotal", Float.parseFloat(txtAreaTotal.getText()));
+                parametros.put("areaConstruida", Float.parseFloat(txtAreaConstruida.getText()));
+                parametros.put("qtdDormitorios", Integer.parseInt(txtDormitorios.getText()));
+                parametros.put("qtdBanheiros", Integer.parseInt(txtBanheiros.getText()));
+                parametros.put("qtdVagasGaragem", Integer.parseInt(txtVagas.getText()));
+                parametros.put("valorIPTU", Float.parseFloat(txtIPTU.getText()));
+                parametros.put("valorVenda", (isAluguel)?0f:Float.parseFloat(txtVenda.getText()));
+                parametros.put("valorAluguel", (isAluguel)?Float.parseFloat(txtAluguel.getText()):0f);
+                parametros.put("tipoOperacao", cbOperacao.getValue());
 
                 switch (tipo) {
-                    case "Casa Residencial":
-                        cod = controller.cadastrarImovel(endereco, dataConstrucao, areaTotal, areaConstruida,
-                                qtdDorms, qtdBanheiros, qtdVagas, valorIPTU, valorVenda, valorAluguel, operacao);
+                    case TipoImovel.PREDIO_RESIDENCIAL:
+                        parametros.put("andar", Integer.parseInt(txtAndar.getText()));
+                        parametros.put("numApto", Integer.parseInt(txtNumApto.getText()));
+                        parametros.put("valorCondominio", Float.parseFloat(txtCondominio.getText()));
                         break;
-                    case "Prédio Residencial":
-                        int andar = Integer.parseInt(txtAndar.getText());
-                        int numApto = Integer.parseInt(txtNumApto.getText());
-                        float condominio = Float.parseFloat(txtCondominio.getText());
-                        cod = controller.cadastrarImovel(endereco, dataConstrucao, areaTotal, areaConstruida,
-                                qtdDorms, qtdBanheiros, qtdVagas, valorIPTU, valorVenda, valorAluguel,
-                                operacao, andar, numApto, condominio);
-                        break;
-                    case "Comercial":
-                        float taxa = Float.parseFloat(txtTaxaFederal.getText());
-                        cod = controller.cadastrarImovel(endereco, dataConstrucao, areaTotal, areaConstruida,
-                                qtdDorms, qtdBanheiros, qtdVagas, valorIPTU, valorVenda, valorAluguel,
-                                operacao, taxa);
+                    case TipoImovel.COMERCIAL:
+                        parametros.put("taxaImpostoFederal", Float.parseFloat(txtTaxaFederal.getText()));
                         break;
                 }
 
+                String cod = controller.cadastrarImovel(tipo, parametros);
                 if (cod != null) {
                     showAlert("Sucesso", "Imóvel cadastrado com sucesso!\nCódigo: "+cod, Alert.AlertType.INFORMATION);
                 } else {

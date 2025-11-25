@@ -12,7 +12,7 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     protected LocalDate dataConstrucao;
     protected float areaTotal;
     protected float areaConstruida;
-    protected int qtdDormitórios;
+    protected int qtdDormitorios;
     protected int qtdBanheiros;
     protected int qtdVagasGaragem;
     protected float valorIPTU;
@@ -21,13 +21,13 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
     protected boolean disponivel;
     protected Operacao tipoOperacao;
 
-    public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitórios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao) {
+    public Imovel_CleitonErinaGabriel(String cod, String endereco, LocalDate dataConstrucao, float areaTotal, float areaConstruida, int qtdDormitorios, int qtdBanheiros, int qtdVagasGaragem, float valorIPTU, float valorVenda, float valorAluguel, Operacao tipoOperacao) {
         this.codigoImovel = GeradorCodigo_CleitonErinaGabriel.gerar(cod);
         this.endereco = endereco;
         this.dataConstrucao = dataConstrucao;
         this.areaTotal = areaTotal;
         this.areaConstruida = areaConstruida;
-        this.qtdDormitórios = qtdDormitórios;
+        this.qtdDormitorios = qtdDormitorios;
         this.qtdBanheiros = qtdBanheiros;
         this.qtdVagasGaragem = qtdVagasGaragem;
         this.valorIPTU = valorIPTU;
@@ -76,7 +76,7 @@ public abstract class Imovel_CleitonErinaGabriel implements Serializable {
                 +"\nData de construção: "+getDataConstrucao_String()
                 +"\nÁrea Total: " +areaTotal+"m^2 Área Construida: "+areaConstruida
                 +"\nQuantidade de Banheiros: "+ qtdBanheiros
-                +"\nQuantidade de Dormitórios: "+qtdDormitórios
+                +"\nQuantidade de Dormitórios: "+ qtdDormitorios
                 +"\nVagas na Garagem: "+qtdVagasGaragem
                 +"\nValor IPTU: R$"+valorIPTU
                 +((tipoOperacao == Operacao.VENDA)?"\nValor Venda: R$"+valorVenda:"\nValor aluguel base: R$"+getValorAluguel());

@@ -6,17 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="17f4de53-b81c-4432-8168-686a0ce0c3a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/alugueis.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/alugueis.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/codigos.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/codigos.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/imoveis.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/imoveis.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Imobiliaria_jar/Imobiliaria.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Imobiliaria_jar/Imobiliaria.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/TransacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/TransacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/ImovelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/ImovelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Aluguel_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Aluguel_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Venda_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/operacao/Venda_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/MainScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/FormTransacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/FormTransacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/JanelaPagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/operacao/JanelaPagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -122,5 +119,16 @@
       <updated>1759687930745</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
