@@ -2,12 +2,9 @@ package com.imobiliaria.controller;
 
 import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
-import com.imobiliaria.model.imovel.Operacao;
 import com.imobiliaria.model.imovel.TipoImovel;
 import com.imobiliaria.model.imovel.factory.FactoryImovel;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ImovelController {
@@ -30,8 +27,6 @@ public class ImovelController {
         }
         return cod;
     }
-
-
 
     public void cancelarCadastro(){
         if(onFecharForm != null)

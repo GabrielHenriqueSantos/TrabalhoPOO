@@ -12,6 +12,7 @@ import com.imobiliaria.model.operacao.Venda_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Cartao_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Dinheiro_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
+import com.imobiliaria.model.relatorio.*;
 import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
 import com.imobiliaria.model.usuario.Usuario_CleitonErinaGabriel;
@@ -223,217 +224,137 @@ public class Imobiliaria_CleitonErinaGabriel {
     /*******************************************************************************************************************/
 
     public String listarImoveis() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis cadastrados:\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            sb.append(i).append("\n");
-            sb.append("\n");
-        }
-        return sb.toString();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(imoveis, "Todos os Imóveis");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarCasaResidencial() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todas as casa residenciais cadastradas:\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i instanceof CasaResidencial_CleitonErinaGabriel) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> casas = imoveis.stream()
+                .filter(i -> i instanceof CasaResidencial_CleitonErinaGabriel)
+                .toList();
+
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(casas, "Casas Residenciais");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarPredioResidencial() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todas as casa residenciais cadastradas:\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i instanceof PredioResidencial_CleitonErinaGabriel) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> predio = imoveis.stream()
+                .filter(i -> i instanceof PredioResidencial_CleitonErinaGabriel)
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(predio, "Prédios Residenciais");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisComerciais() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todas as casa residenciais cadastradas:\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i instanceof Comercial_CleitonErinaGabriel) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> comercios = imoveis.stream()
+                .filter(i->i instanceof Comercial_CleitonErinaGabriel)
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(comercios, "Imóveis comerciais");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisLocacao() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis disponiveis para locação\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i.getTipoOperacao() == Operacao.ALUGUEL && i.isDisponivel()) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> im = imoveis.stream()
+                .filter(i->i.getTipoOperacao() == Operacao.ALUGUEL && i.isDisponivel())
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(im,"Todos Imóveis disponíveis para aluguel");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisAlugados() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis alugados\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i.getTipoOperacao() == Operacao.ALUGUEL && !i.isDisponivel()) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> im = imoveis.stream()
+                .filter(i->i.getTipoOperacao() == Operacao.ALUGUEL && !i.isDisponivel())
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(im, "Todos Imóveis alugados");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisAVenda() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis disponiveis para venda\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i.getTipoOperacao() == Operacao.VENDA && i.isDisponivel()) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> im = imoveis.stream()
+                .filter(i -> i.getTipoOperacao() == Operacao.VENDA && i.isDisponivel())
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(im, "Todos Imóveis disponiveis para venda");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisVendidos() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis vendidos\n");
-        for (Imovel_CleitonErinaGabriel i : imoveis) {
-            if (i.getTipoOperacao() == Operacao.VENDA && !i.isDisponivel()) {
-                sb.append(i).append("\n");
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        List<Imovel_CleitonErinaGabriel> im = imoveis.stream()
+                .filter(i->i.getTipoOperacao() == Operacao.VENDA && !i.isDisponivel())
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioListaImoveis(im, ("Todos Imóveis vendidos"));
+        return relatorio.gerarRelatorio();
     }
 
     public String listarAlugueisAtrasados() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis com Aluguel atrasado\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (!aluguel.isPago() && aluguel.getDataPagamentoMensal().getDayOfMonth() < LocalDate.now().getDayOfMonth()) {
-                sb.append(aluguel).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Aluguel_CleitonErinaGabriel> al = alugueis.stream()
+                .filter(aluguel -> !aluguel.isPago() && aluguel.getDataPagamentoMensal().getDayOfMonth() < LocalDate.now().getDayOfMonth())
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioAlugueis(al, "Todos Imóveis com Aluguel atrasado");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisAlugadosCliente(String codCliente) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis alugados ao Cliente :").append(codCliente).append("\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (aluguel.getCliente().getCodigoUsuario().equals(codCliente)) {
-                sb.append(aluguel).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Aluguel_CleitonErinaGabriel> al = alugueis.stream()
+                .filter(aluguel -> aluguel.getCliente().getCodigoUsuario().equals(codCliente))
+                .toList();
+        RelatorioTemplate relatorio = new RelatorioAlugueis(al,"Todos Imóveis alugados ao Cliente: " + codCliente);
+        return relatorio.gerarRelatorio();
     }
 
     public String listarImoveisVendidosCliente(String codCliente) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Imóveis vendidos ao Cliente :").append(codCliente).append("\n");
-        for (Venda_CleitonErinaGabriel venda : vendas) {
-            if (venda.getCliente().getCodigoUsuario().equals(codCliente)) {
-                sb.append(venda).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Venda_CleitonErinaGabriel> vd = vendas.stream()
+                        .filter(venda ->venda.getCliente().getCodigoUsuario().equals(codCliente))
+                        .toList();
+        RelatorioTemplate relatorio = new RelatorioVendas(vd, "Todos Imóveis vendidos ao Cliente: "+codCliente);
+        return relatorio.gerarRelatorio();
     }
 
     public String listarTodosCorretores() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos os Corretores:\n");
-        for (Usuario_CleitonErinaGabriel corretor : corretores) {
-            sb.append(corretor).append("\n");
-        }
-        return sb.toString();
+        return new RelatorioUsuarios(corretores,"Todos os Corretores").gerarRelatorio();
     }
 
     public String listarTodosClientes() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos os Clientes:\n");
-        for (Usuario_CleitonErinaGabriel cliente : clientes) {
-            sb.append(cliente).append("\n");
-        }
-        return sb.toString();
+        return new RelatorioUsuarios(clientes, "Todos os Clientes").gerarRelatorio();
     }
 
     public String listarAlugueisAtrasadosClientes() {
-        StringBuilder sb = new StringBuilder();
-        Cliente_CleitonErinaGabriel cl;
-        sb.append("Todos Clientes com Aluguel atrasado\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (!aluguel.isPago() && aluguel.getDataPagamentoMensal().getDayOfMonth() < LocalDate.now().getDayOfMonth()) {
-                cl = aluguel.getCliente();
-                sb.append("Código: ").append(cl.getCodigoUsuario()).append("\n").append(cl.getNome()).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Cliente_CleitonErinaGabriel> cl = alugueis.stream()
+                .filter(aluguel -> !aluguel.isPago() && aluguel.getDataPagamentoMensal().isBefore(LocalDate.now()))
+                .map(Aluguel_CleitonErinaGabriel::getCliente).distinct().toList();
+        RelatorioTemplate relatorio = new RelatorioUsuarios(cl, "Cliente com Alugueis Atrasados");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarAlugueisFinalizados() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Alugueis Finalizados\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (aluguel.isFinalizado()) {
-                sb.append(aluguel).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Aluguel_CleitonErinaGabriel> al = alugueis.stream()
+                        .filter(Aluguel_CleitonErinaGabriel::isFinalizado).toList();
+        RelatorioTemplate relatorio = new RelatorioAlugueis(al,"Todos Alugueis Finalizados");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarAlugueisAtivos() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos Alugueis ativos\n");
-        for (Aluguel_CleitonErinaGabriel aluguel : alugueis) {
-            if (!aluguel.isFinalizado()) {
-                sb.append(aluguel).append("\n");
-            }
-        }
-        return sb.toString();
+        List<Aluguel_CleitonErinaGabriel> al = alugueis.stream()
+                        .filter(aluguel -> !aluguel.isFinalizado()).toList();
+        RelatorioTemplate relatorio = new RelatorioAlugueis(al,"Todos Alugueis ativos");
+        return relatorio.gerarRelatorio();
     }
 
     public String listarTodasVendas() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todas as Vendas:\n");
-        for (Venda_CleitonErinaGabriel venda : vendas) {
-            sb.append(venda);
-        }
-        return sb.toString();
+        return new RelatorioVendas(vendas,"Todas as Vendas").gerarRelatorio();
     }
 
-
     public String vendaPorMes(LocalDate fimMes) {
-        StringBuilder sb = new StringBuilder();
         LocalDate inicioMes = fimMes.minusDays(30);
-        float totalLucro = 0;
-        sb.append("Todas Vendas Realizados no mês\n").append(inicioMes).append(" até ").append(fimMes).append("\n");
-        for (Venda_CleitonErinaGabriel venda : vendas) {
-            if (venda.getDataVenda().isAfter(inicioMes) && (venda.getDataVenda().isEqual(fimMes) || venda.getDataVenda().isBefore(fimMes))) {
-                totalLucro += venda.getValorTotalVenda();
-                sb.append(venda).append("\n");
-            }
-        }
-        sb.append("Lucro no periodo: ").append(totalLucro).append("\n");
-        return sb.toString();
+        List<Venda_CleitonErinaGabriel> vd = vendas.stream()
+                        .filter(venda->
+                                venda.getDataVenda().isAfter(inicioMes) && (venda.getDataVenda().isEqual(fimMes) || venda.getDataVenda().isBefore(fimMes)))
+                        .toList();
+        RelatorioTemplate relatorio = new RelatorioVendas(vd,"Todas Vendas entre"+ inicioMes+" e "+ fimMes);
+        return relatorio.gerarRelatorio();
     }
 
     public String listaTodosSeguros() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Todos seguros cadastrados: \n");
-        for (Seguro_CleitonErinaGabriel seguro : seguros) {
-            sb.append(seguro).append("\n");
-        }
-        return sb.toString();
+        return new RelatorioSeguros(seguros).gerarRelatorio();
     }
 
 

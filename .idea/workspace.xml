@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="17f4de53-b81c-4432-8168-686a0ce0c3a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Imobiliaria_jar/Imobiliaria.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Imobiliaria_jar/Imobiliaria.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/ImovelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/controller/ImovelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/Imobiliaria_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/CasaResidencial_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/Imovel_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/model/imovel/PredioResidencial_CleitonErinaGabriel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -49,20 +44,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Maven.Imobiliaria [clean].executor": "Run",
-    "Maven.Imobiliaria [javafx:jlink].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Imobiliaria [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Imobiliaria [javafx:jlink].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.imobiliaria.imobiliaria" />
@@ -119,16 +114,5 @@
       <updated>1759687930745</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/imobiliaria/view/cadastro/FormImovel.java</url>
-          <line>147</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
