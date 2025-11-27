@@ -21,6 +21,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Imobiliaria_CleitonErinaGabriel {
     private static volatile Imobiliaria_CleitonErinaGabriel instance;
@@ -154,8 +155,6 @@ public class Imobiliaria_CleitonErinaGabriel {
         return novoCorretor.getCodigoUsuario();
     }
 
-    //Novo Prédio residencial
-
     public String  novoImovel(Imovel_CleitonErinaGabriel imovel){
         imoveis.add(imovel);
         return imovel.getCodigoImovel();
@@ -219,6 +218,12 @@ public class Imobiliaria_CleitonErinaGabriel {
             }
         }
         return null;
+    }
+
+    public ArrayList<Seguro_CleitonErinaGabriel> buscaSeguros(List<String> codigosSelecionados) {
+        return seguros.stream()
+                .filter(seg -> codigosSelecionados.contains(seg.getCodigoSeguro()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /*******************************************************************************************************************/

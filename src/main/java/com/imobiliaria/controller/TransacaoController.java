@@ -1,18 +1,10 @@
 package com.imobiliaria.controller;
 
 import com.imobiliaria.model.Imobiliaria_CleitonErinaGabriel;
-import com.imobiliaria.model.imovel.Imovel_CleitonErinaGabriel;
 import com.imobiliaria.model.imovel.Operacao;
-import com.imobiliaria.model.operacao.Aluguel_CleitonErinaGabriel;
-import com.imobiliaria.model.operacao.Seguro_CleitonErinaGabriel;
-import com.imobiliaria.model.operacao.Transacao;
-import com.imobiliaria.model.operacao.Venda_CleitonErinaGabriel;
 import com.imobiliaria.model.pagamento.Pagamento_CleitonErinaGabriel;
-import com.imobiliaria.model.usuario.Cliente_CleitonErinaGabriel;
-import com.imobiliaria.model.usuario.Corretor_CleitonErinaGabriel;
-
+import com.imobiliaria.service.TransacaoService;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -23,10 +15,10 @@ public class TransacaoController {
     private final List<String> codImoveisAluguel;
     private final List<String> codClientes;
     private final List<String> codCorretores;
-    private Transacao transacao;
+    private TransacaoService transacao;
 
     private Runnable onFecharForm;
-    private Consumer<PagamentoRequest> onPagamento;
+    private Consumer<TransacaoService.PagamentoRequest> onPagamento;
 
     public TransacaoController() {
         this.imobiliaria = Imobiliaria_CleitonErinaGabriel.getInstance();
@@ -60,63 +52,36 @@ public class TransacaoController {
         onFecharForm.run();
     }
 
-    public void setOnPagamento(Consumer<PagamentoRequest> callback) {
+    public void setOnPagamento(Consumer<TransacaoService.PagamentoRequest> callback) {
         this.onPagamento = callback;
     }
 
     public boolean novaVenda(String metodo, String codCliente, String codCorretor, String codImovel) {
-        Cliente_CleitonErinaGabriel cliente = imobiliaria.buscaCliente(codCliente);
-        Corretor_CleitonErinaGabriel corretor = imobiliaria.buscaCorretor(codCorretor);
-        Imovel_CleitonErinaGabriel imovel = imobiliaria.buscaImovel(codImovel);
-        if (cliente == null || corretor == null || imovel == null)
+        transacao = new TransacaoService();
+        if(!transacao.novaVenda(metodo,codCliente,codCorretor,codImovel))
             return false;
-        imovel.setDisponivel(false);
-        float valor = imovel.getValorVenda();
-        Venda_CleitonErinaGabriel venda = new Venda_CleitonErinaGabriel.Builder()
-                .cliente(cliente).corretor(corretor).valorTotalVenda(valor).imovel(imovel).build();
-        transacao = venda;
         if(onPagamento != null){
-            onPagamento.accept(new PagamentoRequest(metodo, valor));
+            onPagamento.accept(transacao.getRequest());
         }
-        return imobiliaria.novaVenda(venda);
+        return true;
     }
 
     public boolean novoAluguel(String metodo, String codCliente, String codCorretor, String codImovel, LocalDate dataDevolucao, LocalDate dataPagamentoMensal, List<String> segurosContratados) {
-        Cliente_CleitonErinaGabriel cliente = imobiliaria.buscaCliente(codCliente);
-        Corretor_CleitonErinaGabriel corretor = imobiliaria.buscaCorretor(codCorretor);
-        Imovel_CleitonErinaGabriel imovel = imobiliaria.buscaImovel(codImovel);
-        if (cliente == null || corretor == null || imovel == null)
+        transacao = new TransacaoService();
+        if(!transacao.novoAluguel(metodo,codCliente,codCorretor,codImovel,dataDevolucao,dataPagamentoMensal,segurosContratados))
             return false;
-        imovel.setDisponivel(false);
-        ArrayList<Seguro_CleitonErinaGabriel> segAl = new ArrayList<>();
-        Seguro_CleitonErinaGabriel seg;
-        for (String codSeg : segurosContratados) {
-            seg = imobiliaria.buscaSeguro(codSeg);
-            if (seg != null) {
-                segAl.add(seg);
-            }
+        if (onPagamento != null){
+            onPagamento.accept(transacao.getRequest());
         }
-        Aluguel_CleitonErinaGabriel aluguel = new Aluguel_CleitonErinaGabriel.Builder()
-                .cliente(cliente)
-                .corretor(corretor)
-                .imovel(imovel)
-                .dataDevolucao(dataDevolucao)
-                .dataPagamentoMensal(dataPagamentoMensal)
-                .segurosContratados(segAl).build();
-        transacao = aluguel;
-        if(onPagamento != null){
-            onPagamento.accept(new PagamentoRequest(metodo,aluguel.getValorTotalAluguel()));
-        }
-        return imobiliaria.novoAluguel(aluguel);
+        return true;
     }
 
     public void novoPagamento(String tipoPagamento, String nome, String bandeira, String numero) {
-        transacao.setFormaPagamento(imobiliaria.novoPagamento(tipoPagamento, nome, bandeira, numero));
+        transacao.setPagamento(tipoPagamento, nome, bandeira, numero);
     }
 
     public void novoPagamento(String tipoPagamento) {
-        transacao.setFormaPagamento(imobiliaria.novoPagamento(tipoPagamento));
+        transacao.setPagamento(tipoPagamento);
     }
 
-    public record PagamentoRequest(String metodo, float valor){}
 }
