@@ -66,7 +66,7 @@ public class TransacaoService {
                 .segurosContratados(segAl).build();
         transacao = aluguel;
         request = new PagamentoRequest(metodo,aluguel.getValorTotalAluguel());
-        return true;
+        return imobiliaria.novoAluguel(aluguel);
     }
 
     public record PagamentoRequest(String metodo, float valor){}
